@@ -1,0 +1,10 @@
+---
+layout: post
+title: 开始写点什么吧
+description: 辗转这么长时间，终于有一个属于自己的完美写作方案，Come On, Baby!
+category: blog
+---
+
+![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
+
+Hello World!
