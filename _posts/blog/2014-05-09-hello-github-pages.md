@@ -7,4 +7,4 @@ category: blog
 
 ![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
 
-Hello World!
+Hello World! {{ site.media_url }}, that's good.
