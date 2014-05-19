@@ -57,7 +57,7 @@ category: blog
 ![绿色植物]({{ site.media_url }}green-flower.png)
 
 
-## 链接-书写中使用
+## 链接-书写中直接使用
 
 源代码为：
 
@@ -72,7 +72,7 @@ category: blog
 
 ## 链接-命名链接统一使用
 
-### 1、将以下链接信息放置在文章最后
+### 1、将链接信息放置在文章最后
 
     [DNSPod]: http://dnspod.cn "DNSPod"
     [GitHub Pages]: http://pages.github.com "GitHub Pages"
