@@ -6,16 +6,20 @@ category: blog
 ---
 
 # 语法高亮 - 使用 markdown 缩进格式
-    
-源代码为:
 
-    语法高亮 - 使用 markdown 缩进格式\:
+源代码为
+
+```
+
+    语法高亮 - 使用 markdown 缩进格式:
     
         var fs = require('fs');
         
         function test(a, b) {
             return a + b;
         }
+        
+```
 
 转换结果:
 
@@ -25,7 +29,7 @@ category: blog
         return a + b;
     }
 
-
+# 语法高亮 - 使用 jekyII 模板语言
 
 
 ![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
