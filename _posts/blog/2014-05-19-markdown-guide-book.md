@@ -5,6 +5,7 @@ description: 忘了语法，打开这里，有一切需要。
 category: blog
 ---
 
+
 ## 语法高亮-使用markdown缩进格式
 
 源代码为:
@@ -12,39 +13,14 @@ category: blog
 ```
 语法高亮-使用markdown缩进格式:
 
-    var fs = require('fs');
-    
-    function test(a, b) {
-        return a + b;
-    }
+   var fs = require('fs');
+   
+   function test(a, b) {
+       return a + b;
+   }
 ```
 
 转换结果:
-
-    var fs = require('fs');
-    
-    function test(a, b) {
-        return a + b;
-    }
-    
-
-## 语法高亮-使用jekyII模板语言
-
-源代码为：
-
-```
-{% highlight js %}
-
-var fs = require('fs');
-
-function test(a, b) {
-    return a + b;
-}
-
-{% endhighlight %}
-```
-
-转换结果：
 
     var fs = require('fs');
     
