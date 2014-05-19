@@ -75,7 +75,7 @@ category: blog
 ### 将以下链接信息放置在文章最后：
 
 ```
-\[DNSPod\]: http://dnspod.cn "DNSPod"
+[DNSPod]: http://dnspod.cn "DNSPod"
 [GitHub Pages]: http://pages.github.com "GitHub Pages"
 [WordPress]:    http://wordpress.org    "WordPress"
 [2]:  http://stevelosh.com/blog/2011/09/writing-vim-plugins/ "Write Vim Plugins"
