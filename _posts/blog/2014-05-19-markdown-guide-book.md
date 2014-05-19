@@ -5,6 +5,10 @@ description: 忘了语法，打开这里，有一切需要。
 category: blog
 ---
 
+## 基本语法
+
+- 黑体：在需要着重的词句前后使用`*`，如`*node.js*`的效果就是*node.js*
+- 答
 
 ## 语法高亮-使用markdown缩进格式
 
