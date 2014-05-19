@@ -15,22 +15,19 @@ category: blog
 - 列表和引用均支持段落式块状内容
 - 一般链接：`[百度](http://www.baidu.com)` 将转换为 [百度](http://www.baidu.com)
 - 直接链接：`<http://www.baidu.com>` 将转换为 <http://www.baidu.com>，可以用于邮件地址，如：`<somebody@github.com>`
-- 图片：`![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)` 或 `![绿色植物](\{\{ site.media_url \}\}green-flower.png)`
+- 图片：`![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)` 或 `![绿色植物]({{ site.media_url }}green-flower.png)`
 
 ## 语法高亮
 
 源代码为:
 
-```
-语法高亮-使用markdown缩进格式:
-
-
-    var fs = require('fs');
+    语法高亮-使用markdown缩进格式:
     
-    function test(a, b) {
-        return a + b;
-    }
-```
+        var fs = require('fs');
+        
+        function test(a, b) {
+            return a + b;
+        }
 
 转换结果:
 
@@ -104,6 +101,24 @@ category: blog
 
 我有一个 [DNSPod][DNSPod] 账号，跟 [GitHub][GitHub Pages] 关联，发表了一篇 [怎样花两年时间面试一个人][6] 的文章。
 
+
+## 表格
+
+源代码为：
+
+    | Tables        | Are           | Cool  |
+    | ------------- |:-------------:| -----:|
+    | col 3 is      | right-aligned | $1600 |
+    | col 2 is      | centered      |   $12 |
+    | zebra stripes | are neat      |    $1 |
+
+转换结果：
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 
 [DNSPod]: http://dnspod.cn "DNSPod"
