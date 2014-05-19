@@ -5,15 +5,23 @@ description: 忘了语法，打开这里，有一切需要。
 category: blog
 ---
 
-# 语法高亮
-
-### 方法一：使用 markdown 格式:
+# 语法高亮 - 使用 markdown 缩进格式:
     
     var fs = require('fs');
     
     function test(a, b) {
         return a + b;
     }
+
+源代码为:
+
+    语法高亮 - 使用 markdown 缩进格式:
+    
+        var fs = require('fs');
+        
+        function test(a, b) {
+            return a + b;
+        }
 
 
 ![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
