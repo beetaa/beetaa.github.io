@@ -15,7 +15,7 @@ category: blog
 - 列表和引用均支持段落式块状内容
 - 一般链接：`[百度](http://www.baidu.com)` 将转换为 [百度](http://www.baidu.com)
 - 直接链接：`<http://www.baidu.com>` 将转换为 <http://www.baidu.com>，可以用于邮件地址，如：`<somebody@github.com>`
-- 图片：`![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)` 或 `![绿色植物]({{ site.media_url }}green-flower.png)`
+- 图片：`![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)` 或 `![绿色植物](\{\{ site.media_url \}\}green-flower.png)`
 
 ## 语法高亮
 
@@ -24,11 +24,12 @@ category: blog
 ```
 语法高亮-使用markdown缩进格式:
 
-'   var fs = require('fs');
+
+    var fs = require('fs');
     
-'   function test(a, b) {
-'       return a + b;
-'   }
+    function test(a, b) {
+        return a + b;
+    }
 ```
 
 转换结果:
