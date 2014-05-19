@@ -7,9 +7,9 @@ category: blog
 
 ## 语法高亮-使用markdown缩进格式
 
-源代码为
+源代码为:
 
-<pre>
+```
 语法高亮-使用markdown缩进格式:
 
     var fs = require('fs');
@@ -17,7 +17,7 @@ category: blog
     function test(a, b) {
         return a + b;
     }
-</pre>
+```
 
 转换结果:
 
@@ -30,13 +30,9 @@ category: blog
 
 ## 语法高亮-使用jekyII模板语言
 
+源代码为：
 
-![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
-
-Hello World! {{ site.media_url }}, that's good.
-
-![绿色植物]({{ site.media_url }}green-flower.png)
-
+```
 {% highlight js %}
 
 var fs = require('fs');
@@ -46,3 +42,36 @@ function test(a, b) {
 }
 
 {% endhighlight %}
+```
+
+转换结果：
+
+    var fs = require('fs');
+    
+    function test(a, b) {
+        return a + b;
+    }
+
+## 图片-使用自带图片
+
+源代码为：
+
+```
+![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
+```
+
+转换结果：
+
+![Joe Satriani](/images/guitarmaterial/joesatriani.jpg)
+
+## 图片-使用外链图片
+
+```
+![绿色植物]({{ site.media_url }}green-flower.png)
+```
+
+转换结果：
+
+![绿色植物]({{ site.media_url }}green-flower.png)
+
+
