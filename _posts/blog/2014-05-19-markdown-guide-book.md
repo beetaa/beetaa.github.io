@@ -13,11 +13,11 @@ category: blog
 ```
 语法高亮-使用markdown缩进格式:
 
-   var fs = require('fs');
-   
-   function test(a, b) {
-       return a + b;
-   }
+    var fs = require('fs');
+    
+    function test(a, b) {
+        return a + b;
+    }
 ```
 
 转换结果:
@@ -43,6 +43,8 @@ category: blog
 
 
 ## 图片-使用外链图片
+
+源代码为：
 
 ```
 ![绿色植物]({{ site.media_url }}green-flower.png)
