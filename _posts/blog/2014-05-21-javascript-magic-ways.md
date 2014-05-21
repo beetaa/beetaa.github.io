@@ -11,7 +11,7 @@ category: blog
         
         setTimeout(function() {
             
-            cb && cb();
+            cb && cb(); // 前面的 cb 用于判断是否传递了这个参数，后边的 cb() 用于真正执行回调
         }
     }, time);
     
