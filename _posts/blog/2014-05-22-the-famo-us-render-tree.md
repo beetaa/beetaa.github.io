@@ -16,23 +16,23 @@ Javascript 中，对我们来说，HTML 的元素并非你所看到的整个页�
 成本，如：相对定位会导致页面在重排动画内容的时候变慢；在没有妥善管理时间传播时，事件冒泡成本高昂；同时，页面的语义结构也不
 利于很好地分离 HTML 和视图渲染。
 
-Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我们需要避免上述的低效率。当我们决定对 DOM 进行抽象时，我们需要一种
-可以符合 WEB 开发者对 DOM 的认识预期，又不以牺牲性能为代价的方式。其中，渲染树（Render Tree）是我们针对**相对定位**和**语义
-结构**的方案。在另一片文档中，我们将输入讨论事件和动画。
+Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我们需要避免上述的低效率。当我们决定对 DOM 进行抽象时，
+我们需要一种可以符合 WEB 开发者对 DOM 的认识预期，又不以牺牲性能为代价的方式。其中，渲染树（Render Tree）是我们
+针对**相对定位**和**语义结构**的方案。在另一片文档中，我们将输入讨论事件和动画。
 
 ### 创建渲染树
 
-一棵渲染树的起点被称为它的根（ROOT），在传统的 HTML 文档中，``<body>`` 标签就是根。而在 Famo.us 中，根被解释为上下文（Context）。
-我们通过 Famo.us 引擎的 ``.createContext`` 方法来实例化一个上下文，这个方法将创建一个带有 ``famous-container`` CSS 类的 ``<div>`` 
-标签（也可以通过一个已经存在的 DOM 元素来创建上下文）。
+一棵渲染树的起点被称为它的根（ROOT），在传统的 HTML 文档中，``<body>`` 标签就是根。而在 Famo.us 中，根被解释为
+上下文（Context）。我们通过 Famo.us 引擎的 ``.createContext`` 方法来实例化一个上下文，这个方法将创建一个带
+有 ``famous-container`` CSS 类的 ``<div>`` 标签（也可以通过一个已经存在的 DOM 元素来创建上下文）。
 
     context                    var context = Engine.createContext();
 
 ### 扩展渲染树
 
-上面完成了一个 APP 的创建，但尚没有任何可见的内容，仅仅提供一个 Famo.us 渲染周期的起点。我们可以通过使用 ``.add`` 方法来为
-渲染树添加可以显示的节点。平面（Surface）是节点的一种，与 HTML 的 ``<div>`` 标签相对应，这个 ``<div>`` 将被嵌套在上下文以后
-的 ``<div>`` 中。结果如下：
+上面完成了一个 APP 的创建，但尚没有任何可见的内容，仅仅提供一个 Famo.us 渲染周期的起点。我们可以通过使用 ``.add`` 方
+法来为渲染树添加可以显示的节点。平面（Surface）是节点的一种，与 HTML 的 ``<div>`` 标签相对应，这个 ``<div>`` 将
+被嵌套在上下文以后的 ``<div>`` 中。结果如下：
 
     context                    var context = Engine.createContext();
        |
@@ -41,12 +41,12 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
 ### 节点的种类
 
 一棵渲染树由节点构成。在传统的 HTML 中，这些节点表示为 ``<div>``、``<button>`` 之类的标记。在 Famo.us 中，节点分
-为**可见类（renderables）**和**调整类（modifiers）**。在上面的例子中，我们所添加的平面便是一个可见节点。下面我们
+为**可渲染（renderables）**和**修改器（modifiers）**。在上面的例子中，我们所添加的平面便是一个可见节点。下面我们
 将讨论构成一棵渲染树的典型节点类型。
 
-### 可见类节点
+### 可渲染类节点
 
-可见类节点将被绘制在屏幕上。之前的平面节点与 HTML 的 ``<div>`` 标记相关联，其他与 HTML 传统标记对应的节点如下：
+可渲染类节点将被绘制在屏幕上。之前的平面节点与 HTML 的 ``<div>`` 标记相关联，其他与 HTML 传统标记对应的节点如下：
 
 |平面节点类型          |对应的 HTML 标记           |
 |----------------------|:-------------------------:|
@@ -58,3 +58,72 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
 
 此外还有一种称之为``ContainerSurface``的平面节点，对应在其中嵌套一个 ``Surface`` 节点的 ``<div>`` 标记，常用于设置
 了 ``{overflow: hidden} CSS 属性的情况。
+
+所有的平面节点均可自由与任何的 HTML 内容、CSS 样式混用。无论是从一个模板进行渲染还是通过 MVC 绑定数据，Famo.us 对你在平面
+中的操作均不会进行干预。但，如果你打算对一系列的 HTML 元素进行独立的动画操作，或通过绑定 DOM 事件监听器来与 APP 的
+其他内容进行交互，我们会建议你用一个平面将这些内容包裹起来。平面节点中的内容最好是静态的或者不常变更的。
+
+一个平面节点是 Famo.us 最小的渲染单位，但我们同时支持更加复杂的可见类节点混合，即下面将要讨论的**视图**。
+
+### 修改器节点
+
+修改器是 Famo.us 的另一种节点类型，可用于修改渲染树中该节点所包含的子节点。平面节点很笨，真的！它们不知道自己在页面中
+的位置，甚至自己是否可见都不知道。其实这是修改器的工作，修改器对其所包含节点的布局和可视性负责。我们将布局和可视性组
+合在一起，是因为在 CSS3 中，变形和透明度是两个依赖于硬件加速的属性，对性能有显著影响。
+
+    context                    var context = Engine.createContext();
+     │
+    modifier                   var chain = context.add(modifier);
+     │
+    surface                    chain.add(surface);
+
+上面是一个说明如何对平面节点应用修改器的简化版本。事实上，我们可以通过以下方式来定义一个修改器：
+
+    var modifier = new Modifier({
+    
+        transform : Transform.translate(100,200)
+    });
+
+这样，平面节点将被移动至上下文的 ``top = 100px, left = 200px``，修改器对布局还有很多的强力支持，比如：自动居中、调整
+大小等，这些将在另外的教学中讨论。
+
+### 节点的链式修改
+
+修改器根据所在的位置，对渲染树其上的节点产生影响。也就是说，一个修改器可以对另一个修改器产生影响，通过定义一连串的修
+改器，这个修改器链条的作用将会被叠加：变形被组合，透明度被累计。这将便于用多个简单的修改器完成复杂的操作，如：一个修
+改器负责处理透明度，另一个则专门处理旋转。
+
+    context                    var context = Engine.createContext();
+       │
+    modifier1                  context.add(modifier1)
+       │                             . dd(modifier2)
+    modifier2                         .add(surface);
+       │
+    surface
+    
+### 节点分支
+
+到目前为止，我们的渲染树还是一根筋：一个节点紧接另一个节点。事实上，节点分支才是渲染树有趣的部分。下面的例子描述了如
+何通过在同一节点下连续使用 ``.add`` 方法来产生分支：
+
+          context                var context = Engine.createContext();
+       ┌─────┴─────┐
+    modifier    surface2         context.add(modifier).add(surface1); // 左边分支
+       │
+    surface1                     context.add(surface2);               // 右边分支
+
+节点分支是对可渲染节点进行相对定位的关键，如：
+
+          context                var context = Engine.createContext();
+             │
+         modifier1               var relativeNode = context.add(modifier1);
+       ┌─────┴─────┐
+    modifier2   surface2         relativeNode.add(modifier2).add(surface1);
+       │
+    surface1                     relativeNode.add(surface2);
+
+在上面的例子中，surface1 和 surface2 同时相对 modifier1 进行相对定位，其中，surface1 在此基础上叠加应用了 modifier2 的
+定位数据（假设这些修改器仅用于定位修改）。
+
+### 视图
+
