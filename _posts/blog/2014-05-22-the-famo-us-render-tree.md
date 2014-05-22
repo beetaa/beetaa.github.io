@@ -49,12 +49,12 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
 可见类节点将被绘制在屏幕上。之前的平面节点与 HTML 的 ``<div>`` 标记相关联，其他与 HTML 传统标记对应的节点如下：
 
 |平面节点类型          |对应的 HTML 标记           |
-|----------------------|---------------------------|
-|Surface               |``<div>``                  |
-|ImageSurface          |``<img>``                  |
-|InputSurface          |``<input``                 |
-|CanvasSurface         |``<canvas>``               |
-|VideoSurface          |``<video>``                |
+|----------------------|:-------------------------:|
+|Surface               |<div>                      |
+|ImageSurface          |<img>                      |
+|InputSurface          |<input>                    |
+|CanvasSurface         |<canvas>                   |
+|VideoSurface          |<video>                    |
 
 此外还有一种称之为``ContainerSurface``的平面节点，对应在其中嵌套一个 ``Surface`` 节点的 ``<div>`` 标记，常用于设置
 了 ``{overflow: hidden} CSS 属性的情况。
