@@ -150,8 +150,8 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
      S1  S2  S3  ⋯  S10
 
 需要注意的是，上面例子中的 ``S10`` 并不一定是 Famo.us 的平面节点，它可以是另一个包含自身修改器和其他节点的视图，甚至
-可以是另外一个 ``Scrollview``（也就是说，视图可以嵌套 --译者注）。You could have a scrollview whose first item has 
-a cross-fading opacity between two surfaces by letting S10 be its own View with the structure:
+可以是另外一个 ``Scrollview``（也就是说，视图可以嵌套 --译者注）。如果 ``S10`` 是另一个视图且结构如下，你可以设置
+``Scrollview`` 第一个元素的透明叠加属性（Cross-fading Opacity）。
 
              S10                 S10.add(modifier1).add(surface1);
         ┌─────┴─────┐
@@ -168,8 +168,42 @@ a cross-fading opacity between two surfaces by letting S10 be its own View with 
          scrollview
      ┌───┬───┼───────┐
     S1  S2  S3  ⋯  S10
-           ┌─────┴─────┐
-       modifier1    modifier2
-           │           │
-       surface1     surface2
+               ┌─────┴─────┐
+           modifier1    modifier2
+               │           │
+           surface1     surface2
+
+通过视图对复杂的逻辑进行包装，我们可以更好地管理 APP。相比于 DOM，不会因为结构嵌套而导致性能受损，渲染树中的所有东西
+在转换为 DOM 的时候都是扁平结构的。
+
+### 简要概括
+
+> 修改器就是一切。 -- Anon
+
+在上面所有的范例中，你会注意到一个模式：一棵渲染树始于一个上下文，经由包含一系列修改器的分支发散开，并以一个平面结尾。
+DOM 将可视元素和语义表达混合在一起，而渲染树则将之明确区分为布局（通过修改器节点）、内容（通过平面节点）和结构（通过
+ ``.add`` 方法）。
+ 
+事实上，如果你需要知道渲染树某个平面节点的位置、透明度，只需计算其上修改器的透明度和变形数据即可。
+
+两者的另一个不同点在于，DOM 在节点样式或内容发生变化后都需要重绘（即时模式），而 Famo.us 则是在后台通过 ``requestAnimationFrame`` 
+对需要处理的变更进行缓冲和批量处理（保留模式）。这些变更将被适时处理（与显示器刷新率同步）。
+
+总的来说，Famo.us 的渲染树和传统的 DOM 比较如下：
+
+|                       |Famo.us 渲染树             |DOM                       |
+|-----------------------|---------------------------|--------------------------|
+|树形结构               |是                         |是                        |
+|节点                   |可渲染节点 + 修改器节点    |HTML 元素                 |
+|需要重新梳理           |否                         |是                        |
+|包装                   |视图 + 组件                |Shadow DOM                |
+|含义                   |结构                       |结构 + 渲染               |
+|渲染周期               |保留模式                   |即时模式                  |
+|语言                   |Javascript                 |HTML                      |
+
+
+---
+
+[本文](http://beetaa.com/the-famo-us-render-tree/)为[个人](http://beetaa.com/)原创
+翻译[作品](http://famo.us/guides/dev/render-tree.html)，可随意转载，但期待能保留原文链接。十分谢谢。
 
