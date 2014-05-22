@@ -72,9 +72,9 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
 合在一起，是因为在 CSS3 中，变形和透明度是两个依赖于硬件加速的属性，对性能有显著影响。
 
     context                    var context = Engine.createContext();
-     │
+       │
     modifier                   var chain = context.add(modifier);
-     │
+       │
     surface                    chain.add(surface);
 
 上面是一个说明如何对平面节点应用修改器的简化版本。事实上，我们可以通过以下方式来定义一个修改器：
@@ -136,10 +136,40 @@ Famo.us 一致在追求 60 FPS 的富内容体验，要达到这个目标，我�
 在下面的例子中，我们添加了一个 ``Scrollview`` ：
 
     context                var context = Engine.createContext()
-         │
+       │
     modifier               context.add(modifier).add(scrollview);
-         │
+       │
     scrollview
 
 从内部看，``Scrollview`` 有着自己复杂的内部逻辑，但开发者只需简单地如其他节点一样将至添加到渲染树中，而无需关注其内部
-逻辑。这是 Famo.us 对 Shadow DOM 的实现。``Scrollview`` 初始化后，
+逻辑。这是 Famo.us 对 Shadow DOM 的实现。``Scrollview`` 初始化后，我们就可以通过它的 ``sequenceFrom`` 接口填充可渲染
+节点，这些节点将被创建为 ``Scrollview`` 组件的内部渲染树。
+
+         scrollview              scrollview.sequenceFrom([S1, S2, S3, ... , S10]);
+     ┌───┬───┼───────┐
+     S1  S2  S3  ⋯  S10
+
+需要注意的是，上面例子中的 ``S10`` 并不一定是 Famo.us 的平面节点，它可以是另一个包含自身修改器和其他节点的视图，甚至
+可以是另外一个 ``Scrollview``（也就是说，视图可以嵌套 --译者注）。You could have a scrollview whose first item has 
+a cross-fading opacity between two surfaces by letting S10 be its own View with the structure:
+
+             S10                 S10.add(modifier1).add(surface1);
+        ┌─────┴─────┐
+    modifier1   modifier2        S10.add(modifier2).add(surface2);
+        │           │
+    surface1    surface2
+
+这时的渲染树结构将如下：
+
+          context
+             │
+          modifier
+             │
+         scrollview
+     ┌───┬───┼───────┐
+    S1  S2  S3  ⋯  S10
+           ┌─────┴─────┐
+       modifier1    modifier2
+           │           │
+       surface1     surface2
+
