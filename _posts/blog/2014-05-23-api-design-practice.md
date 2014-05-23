@@ -17,11 +17,11 @@ category: blog
 
     GET /users      # 获取用户列表
     POST /blogs     # 创建一篇文章
-
+    
 动作类资源以**动作单词**作为资源名称，如：
 
     GET /search?q=design        # 获取关键词 design 的搜索结果
-
+    
 
 
 
