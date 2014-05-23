@@ -22,7 +22,20 @@ category: blog
 
     GET /search?q=design        # 获取关键词 design 的搜索结果
     
+### 用标准的RESTful请求代替对资源的动作
 
+|HTTP动作                 |对应资源动作                 |
+|-------------------------|-----------------------------|
+|POST                     |CREATE - 创建                |
+|GET                      |READ - 读取、获取数据        |
+|PUT                      |UPDATE - 更新                |
+|DELETE                   |DELETE - 删除                |
+
+### 对实体资源仅使用两种URL模式
+
+|              |POST           |GET            |PUT            |DELETE           |
+|/blogs        |创建文章       |查看文章列表   |批量修改       |批量删除         |
+|/blogs/1234   |无动作，error  |查看单篇文章   |修改单篇文章   |删除单篇文章     |
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
