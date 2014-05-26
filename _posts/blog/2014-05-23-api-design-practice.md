@@ -55,6 +55,7 @@ category: blog
     关联内容的返回方式有两种：
     1、返回指向所关联内容的 URL，用户通过点击相关链接再具体查询；
     2、返回具体结果，与主体资源一并返回。
+    可以以 embeded=？？？的方式来指定是否需要将数据嵌入一并返回。
 
 ### 将依附于实体资源的操作当成该资源的子集
 
@@ -67,19 +68,18 @@ category: blog
 ### 将 GET、DELETE 的参数放在 URL 上，用 ？问候一切复杂
 
 - 参数可以包括筛选、排序、分页、查询字段、搜索范围、关键字、删除操作等内容
-- 参数串以``?``开头，以``&``分割不同参数，以``=``分割参数和取值，以``,``分割多个参
-  数值，以``-``反相
+- 参数串以``?``开头，以``&``分割不同参数，以``=``分割参数和取值，以``,``分
+  割多个参数值，以``-``反相
+- 参数首单词首字母小写，后面单词首字母大写的方式（与 javascript 保持一致）
 
-<pre><code>
-/blogs?sort=-priority               [GET]       # 按优先级排序文章
-/blogs?stat=open&sort=priority,created_at&fields=id,name,address
+<pre><code>/blogs?sort=-priority               [GET]       # 按优先级排序文章
+/blogs?stat=open&sort=priority,createdAt&fields=id,name,address
 /blogs?q=beetaa                     [GET]       # 以关键字 beetaa 查询文章
 </code></pre>
 
 ### 将 POST、PUT 的参数放在 JSON 里
 
 - 使用 JSON 传输数据时，记得在请求头加入 ``Content-Type: application/json``
-- d
 
 ### 限制返回的字段内容
 
@@ -87,8 +87,14 @@ category: blog
 
 ### 返回数据一律采取 JSON 格式
 
+- 对于返回的数据格式有一个统一的包装结构，如层级、内容、名称定义等
+- 错误信息亦应使用 JSON 格式返回，并定义良好
 
 ### 其他魔法
 
+- 限制查询的速度，预防 DDos 攻击
+- 限制查询结果数量，慎防恶意竞争者和数据爬虫
+- 始终使用 SSL，安全，且便于认证
+- 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
