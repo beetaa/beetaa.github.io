@@ -21,12 +21,12 @@ category: blog
 
 实体类资源以**实体名称的复数**作为资源名称，如：
 
-    GET /users      # 获取用户列表
-    POST /blogs     # 创建一篇文章
+    /users              [GET]       # 获取用户列表
+    /blogs              [POST]      # 创建一篇文章
     
 动作类资源以**动作单词**作为资源名称，如：
 
-    GET /search?q=design        # 获取关键词 design 的搜索结果
+    /search?q=design    [GET]       # 获取关键词 design 的搜索结果
     
 ### 用标准的RESTful请求代替对资源的动作
 
