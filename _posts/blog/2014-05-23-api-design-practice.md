@@ -89,6 +89,9 @@ category: blog
 
 - 对于返回的数据格式有一个统一的包装结构，如层级、内容、名称定义等
 - 错误信息亦应使用 JSON 格式返回，并定义良好
+- data 是主要数据，是数组，可包含若干数据，每条数据可以嵌套包含关联数据
+- page 是分页信息，只返回用于计算结果的基础数据，UI 层可以更加灵活
+- error 是错误信息，其中的 url 是解释该错误相信信息的网址
 
 <pre><code>{
   statusCode: 200,
@@ -98,11 +101,9 @@ category: blog
     }
   ],
   page: {
-    current: 5,
-    previous: url,
-    next: url,
-    first: url,
-    last: url
+    pageNumber: 5,
+    perPage: 10,
+    totalRecord: 158
   },
   error: {
     id: 0x123123123,
@@ -111,12 +112,22 @@ category: blog
   }
 }
 </code></pre>
-    
+
+### 授权访问
+
+- RESTful API是无状态的也就是说用户请求的鉴权和cookie以及session无关，每一
+  次请求都应该包含鉴权证明。
+- 认证方法一：SSL。用户可以首先通过一次用户名-密码的验证并得到token，并且可
+  以拷贝返回的token到以后的请求中。
+- 认证方法二：使用OAuth 2来进行token的安全传输。
+- 认证方法三：JSONP 请求无法发送普通的credential。这种情况下可以在查询url中
+  添加参数：access_token。
+
 ### 其他魔法
 
 - 限制查询的速度，预防 DDos 攻击
 - 限制查询结果数量，慎防恶意竞争者和数据爬虫
 - 始终使用 SSL，安全，且便于认证
-- 
+
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
