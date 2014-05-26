@@ -64,7 +64,7 @@ category: blog
     
     同样的操作可运用于难度评价、分述评价等动作。
 
-### 用参数扩展 GET、DELETE 操作，用 ？问候一切复杂
+### 将 GET、DELETE 的参数放在 URL 上，用 ？问候一切复杂
 
 - 参数可以包括筛选、排序、分页、查询字段、搜索范围、关键字、删除操作等内容
 - 参数串以``?``开头，以``&``分割不同参数，以``=``分割参数和取值，以``,``分割多个参
@@ -76,10 +76,18 @@ category: blog
 /blogs?q=beetaa                     [GET]       # 以关键字 beetaa 查询文章
 </code></pre>
 
+### 将 POST、PUT 的参数放在 JSON 里
+
+- 使用 JSON 传输数据时，记得在请求头加入 ``Content-Type: application/json``
+- d
+
 ### 限制返回的字段内容
 
     /blogs?&fields=id,name,address      [GET]
-    
+
+### 返回数据一律采取 JSON 格式
+
+
 ### 其他魔法
 
 
