@@ -64,6 +64,16 @@ category: blog
     
     同样的操作可运用于难度评价、分述评价等动作。
 
+### 用参数扩展 GET、DELETE 操作，用 ？问候一切复杂
+
+- 参数可以包括筛选、排序、分页、查询字段、搜索范围、关键字、删除操作等内容
+- 参数串以``?``开头，以``&``分割不同参数，以``=``分割参数和取值，以``,``分割多个参
+  数值，以``-``反相
+
+    /blogs?sort=-priority               [GET]       # 按优先级排序文章
+    /blogs?stat=open&sort=priority,created_at&fields=id,name,address
+    /blogs?q=beetaa                     [GET]       # 以关键字 beetaa 查询文章
+
 
 
 
