@@ -70,11 +70,17 @@ category: blog
 - 参数串以``?``开头，以``&``分割不同参数，以``=``分割参数和取值，以``,``分割多个参
   数值，以``-``反相
 
-    /blogs?sort=-priority               [GET]       # 按优先级排序文章
-    /blogs?stat=open&sort=priority,created_at&fields=id,name,address
-    /blogs?q=beetaa                     [GET]       # 以关键字 beetaa 查询文章
+<pre><code>
+/blogs?sort=-priority               [GET]       # 按优先级排序文章
+/blogs?stat=open&sort=priority,created_at&fields=id,name,address
+/blogs?q=beetaa                     [GET]       # 以关键字 beetaa 查询文章
+</code></pre>
 
+### 限制返回的字段内容
 
+    /blogs?&fields=id,name,address      [GET]
+    
+### 其他魔法
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
