@@ -51,9 +51,9 @@ category: blog
     /blogs/1234/comments            [DELETE]    # 删除 ID 为 1234 文章下的所有评论
     /users/beetaa/blogs             [GET]       # 获取 ID 为 beetaa 用户的文章列表
     
-<pre class="notice">
-提示2
-</pre>
+<div class="message notice">
+哈哈哈
+</div>
 
 
 

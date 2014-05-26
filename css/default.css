@@ -54,7 +54,9 @@ table {width: 100%; padding: 10px; background-color:#000; overflow:auto;margin-b
 tr {line-height: 2em; border-top: 1px dotted #fff;}
 th,td {padding: 0.5em 1em;}
 td code {background-color:transparent;color:#eee; padding:0 5px;font-family:"Courier";line-height:14px;font-size:14px;word-wrap:break-word; }
-.notice {background-color:#F596AA;color:#fff;padding:0.8em;}
+
+.message {padding:15px;overflow:auto;margin-bottom:40px;font-size:14px;border: 1px solid #eee;-webkit-border-radius: 4px 4px 4px 4px;-moz-border-radius: 4px 4px 4px 4px;border-radius: 4px 4px 4px 4px;color:#b9bdb6;margin-top:-20px; }
+.notice {background-color:#F596AA;color:#fff;}
 
 /************layout style*****************/
 #content {width:1060px;margin:90px auto 60px;min-height:400px;height:auto !important;height:400px; }
