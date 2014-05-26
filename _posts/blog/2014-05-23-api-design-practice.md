@@ -13,7 +13,7 @@ category: blog
 - 可以在底层 API 的基础上提供抽象层，方便批量处理请求和返回结果
 - 对于常用的包含参数的请求，可提供一个便于记忆的 URL 别名
 
-### 抽象资源
+### 抽象资源，只要一个 endpoint
 
 资源只分两种**实体类**和**动作类**。如：对于一个博客来说，可将用户、文章、类别、评论看作是实
 体类资源，而类似于全局搜索文章这样的动作，因一个搜索动作可同时搜索多种资源，可将之归类为动作
@@ -46,8 +46,14 @@ category: blog
 
 ### 通过 URL 嵌套来表示资源之间的关系
 
-    blogs/1234/comments               [GET]       # 获取 ID 为 1234 文章下的评论列表
-    users/beetaa/blogs                [GET]       # 获取 ID 为 beetaa 用户的文章列表
+    /blogs/1234/comments            [GET]       # 获取 ID 为 1234 文章下的评论列表
+    /blogs/1234/comments            [POST]      # 为 ID 为 1234 的文章添加一条评论
+    /blogs/1234/comments            [DELETE]    # 删除 ID 为 1234 文章下的所有评论
+    /users/beetaa/blogs             [GET]       # 获取 ID 为 beetaa 用户的文章列表
+    
+<div class="notice">
+提示
+<div>
 
 
 
