@@ -46,8 +46,8 @@ category: blog
 
 ### 通过 URL 嵌套来表示资源之间的关系
 
-- blogs/1234/comments               [GET]       # 获取 ID 为 1234 文章下的评论列表
-- users/beetaa/blogs                [GET]       # 获取 ID 为 beetaa 用户的文章列表
+    blogs/1234/comments               [GET]       # 获取 ID 为 1234 文章下的评论列表
+    users/beetaa/blogs                [GET]       # 获取 ID 为 beetaa 用户的文章列表
 
 
 
