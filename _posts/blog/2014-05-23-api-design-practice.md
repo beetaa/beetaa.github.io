@@ -134,6 +134,8 @@ category: blog
 - 通过分析``X-HTTP-Method-Override``请求头来实现自定义的请求动作，如``PATCH``等
 - API 版本可以使用参数``v``来指定，如``?v=1``、``?v=2``等
 - JSON 数据传输前应使用``pretty print``进行美化处理
+- 统一提供以纯数字为格式的时间戳，如``1401096133785``，便于 javascript 灵活还原
+- 每个资源都有一个唯一的ID，每种资源的ID格式应该是同一的，可使用``UUID``
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
