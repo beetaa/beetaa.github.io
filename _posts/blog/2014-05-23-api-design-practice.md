@@ -52,7 +52,11 @@ category: blog
     /users/beetaa/blogs             [GET]       # 获取 ID 为 beetaa 用户的文章列表
     
 <div class="message notice">
-哈哈哈
+关联内容的返回方式有两种
+<ul>
+  <li>返回指向所关联内容的 URL，用户通过点击相关链接再具体查询</li>
+  <li>返回具体结果，与主体资源一并返回</li>
+</ul>
 </div>
 
 
