@@ -90,6 +90,28 @@ category: blog
 - 对于返回的数据格式有一个统一的包装结构，如层级、内容、名称定义等
 - 错误信息亦应使用 JSON 格式返回，并定义良好
 
+<pre><code>{
+  statusCode: 200,
+  data: [
+    { id: xyz,
+      content: blalalala
+    }
+  ],
+  page: {
+    current: 5,
+    previous: url,
+    next: url,
+    first: url,
+    last: url
+  },
+  error: {
+    id: 0x123123123,
+    message: yayayaaya,
+    url: /adsfadsf/asdfas
+  }
+}
+</code></pre>
+    
 ### 其他魔法
 
 - 限制查询的速度，预防 DDos 攻击
