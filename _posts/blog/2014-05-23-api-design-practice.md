@@ -108,6 +108,7 @@ category: blog
   error: {
     id: 0x123123123,
     message: yayayaaya,
+    description: adfasdfadsfasf,
     url: /adsfadsf/asdfas
   }
 }
@@ -125,9 +126,14 @@ category: blog
 
 ### 其他魔法
 
+- 重要：API 应充分利用 HTTP 自带的缓存机制，如``ETag``、``Last-Modified``等
+- 为数据传输开启``gzip``压缩预处理
 - 限制查询的速度，预防 DDos 攻击
 - 限制查询结果数量，慎防恶意竞争者和数据爬虫
 - 始终使用 SSL，安全，且便于认证
+- 通过分析``X-HTTP-Method-Override``请求头来实现自定义的请求动作，如``PATCH``等
+- API 版本可以使用参数``v``来指定，如``?v=1``、``?v=2``等
+- JSON 数据传输前应使用``pretty print``进行美化处理
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
