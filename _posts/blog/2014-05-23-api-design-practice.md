@@ -52,7 +52,7 @@ category: blog
     /users/beetaa/blogs             [GET]       # 获取 ID 为 beetaa 用户的文章列表
     
 <pre class="notice">
-提示
+提示2
 </pre>
 
 
