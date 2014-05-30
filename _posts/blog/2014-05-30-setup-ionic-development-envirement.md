@@ -36,4 +36,8 @@ category: blog
 2. 安装，将 zip 文件直接解压至``C:\Program Files\adt-bundle``
 3. 配置路径，将``C:\Program Files\adt-bundle\sdk\platform-tools``和``C:\Program Files\adt-bundle\sdk\tools``加入 Path
 
+<pre class="notice">
+通过 C:\Program Files\adt-bundle\eclipse\eclipse.exe 可运行 IDE
+</pre>
+
 [Beetaa]:    http://beetaa.com  "Beetaa"
