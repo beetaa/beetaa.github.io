@@ -12,9 +12,7 @@ category: blog
 - 官方库：``https://registry.npmjs.org``
 
     npm config set registry http://registry.cnpmjs.org  #临时生效
-    
     npm --registry http://registry.cnpmjs.org info underscore   #临时生效
-    
     编辑 .npmrc 文件，加入 registry = http://registry.cnpmjs.org    #永久生效
     
 ### 二
