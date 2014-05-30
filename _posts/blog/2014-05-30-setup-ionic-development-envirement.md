@@ -35,9 +35,12 @@ category: blog
 1. 下载链接：[ADT-Bundle](http://developer.android.com/sdk/index.html)
 2. 安装，将 zip 文件直接解压至``C:\Program Files\adt-bundle``
 3. 配置路径，将``C:\Program Files\adt-bundle\sdk\platform-tools``和``C:\Program Files\adt-bundle\sdk\tools``加入 Path
+4. 为``C:\Program Files\adt-bundle\eclipse\eclipse.exe``建立桌面快捷方式
+5. 测试：运行 Eclipse
 
-<pre class="notice">
-通过 C:\Program Files\adt-bundle\eclipse\eclipse.exe 可运行 IDE
-</pre>
+### 四、配置安卓模拟器
+
+1. ADT-Bundle 的配置程序在``C:\Program Files\adt-bundle\SDK Manager.exe``，可以为其建立桌面快捷方式以便使用
+2. 模拟器的配置也在其中进行，``Tools`` -> ``Manage AVDs...`` -> ``New...``
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
