@@ -11,6 +11,8 @@ category: blog
 - cnpm：``http://registry.cnpmjs.org``
 - 官方库：``https://registry.npmjs.org``
 
+设置方法
+
     npm config set registry http://registry.cnpmjs.org  #临时生效
     npm --registry http://registry.cnpmjs.org info underscore   #临时生效
     编辑 .npmrc 文件，加入 registry = http://registry.cnpmjs.org    #永久生效
