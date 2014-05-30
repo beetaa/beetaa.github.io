@@ -5,8 +5,8 @@ description: 完美方案，简单配置。
 category: blog
 ---
 
-> 开发环境摘要
->
+### 开发环境摘要
+
 > 操作系统：windows xp 32 bit - 号称 xp 系统的坚守者 ^_^
 > JDK：Oracal Java SE Development Kit 7 update 60
 
@@ -20,7 +20,10 @@ category: blog
     2. 将 JDK 可执行文件路径``C:\Program Files\Java\jdk1.7.0_60\bin`` 和 JRE 可执行文件路径``C:\Program Files\Java\jre7\bin`` 添加至 Path
 4. 测试
 
-### 二、安装
+### 二、安装 Ant
+
+1. 下载链接：[Apache Ant 1.9.4](http://apache.fayea.com/apache-mirror//ant/binaries/apache-ant-1.9.4-bin.zip)
+2. 安装，将 zip 文件直接解压至``
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
