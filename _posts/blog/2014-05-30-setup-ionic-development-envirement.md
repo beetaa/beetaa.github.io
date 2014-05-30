@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ionic + Angular + Cordova 开发环境配置（基于win）
+title: Ionic + Angular + Cordova 开发环境配置
 description: 完美方案，简单配置。
 category: blog
 ---
