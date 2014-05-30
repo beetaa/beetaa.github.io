@@ -23,7 +23,8 @@ category: blog
 ### 二、安装 Ant
 
 1. 下载链接：[Apache Ant 1.9.4](http://apache.fayea.com/apache-mirror//ant/binaries/apache-ant-1.9.4-bin.zip)
-2. 安装，将 zip 文件直接解压至``
+2. 安装，将 zip 文件直接解压至``C:\Program Files\apache-ant-1.9.4``
+3. 配置路径，将 Ant 可执行文件路径``C:\Program Files\apache-ant-1.9.4\bin`` 添加至 Path
 
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
