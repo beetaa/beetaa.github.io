@@ -13,7 +13,8 @@
             var resultElement = document.getElementById('result');
             
             angularRef.on('value', function(data) {
-                resultElement.innerHtml(data.toString());
+                alert(data.val());
+                // resultElement.innerHtml(data.toString());
             });
             
             
