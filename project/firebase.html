@@ -19,7 +19,7 @@
             
             angularRef.on('value', function(data) {
                 alert(data.val().title);
-                resultElement.innerHtml(data.val().title);
+                resultElement.innerHTML = data.val().title;
             });
             
         </script>
