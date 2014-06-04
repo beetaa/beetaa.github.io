@@ -3,10 +3,25 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+        <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+        
+        <script type="text/javascript">
+            var rootRef = new Firebase('https://glaring-fire-2115.firebaseio.com/');
+            var blogRef = rootRef.child('blogs');
+            var angularRef = blogRef.child('angular');
+            
+            var resultElement = document.getElementById('result');
+            
+            angularRef.on('value', function(data) {
+                resultElement.innerHtml(data.toString());
+            });
+            
+            
+        </script>
     </head>
     
     <body>
         <h3>测试</h3>
+        <div id="result"></div>
     </body>
 </html>
