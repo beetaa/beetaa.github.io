@@ -4,6 +4,11 @@
     <head>
         <meta charset="utf-8">
         <script type="text/javascript" src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+    </head>
+    
+    <body>
+        <h3>测试</h3>
+        <div id="result"></div>
         
         <script type="text/javascript">
             var rootRef = new Firebase('https://glaring-fire-2115.firebaseio.com/');
@@ -17,12 +22,7 @@
                 resultElement.innerHtml(data.val().title);
             });
             
-            
         </script>
-    </head>
-    
-    <body>
-        <h3>测试</h3>
-        <div id="result"></div>
+        
     </body>
 </html>
