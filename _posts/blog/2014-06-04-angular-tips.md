@@ -34,6 +34,8 @@ angularjs最突出的特殊之一就是DI，也就是注入，利用factory把�
       }
     });
     
+参考：[Sharing Data Between Controllers by TIW](https://github.com/tiw/angularjs-tutorial/blob/master/sharing-data-between-controllers.markdown)
+
 ### 二
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
