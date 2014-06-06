@@ -28,6 +28,16 @@ category: blog
     ~/project $ git remote add origin ~/Dropbox/git/project.git
     ~/project $ git push -u origin master
     
+错误解决：
+
+    # 删除 Git 仓库，重建同名的仓库
+    $ cd ~/Dropbox/git
+    $ rm -rf project.git
+    $ git init --bare project.git
+    
+    # 将保存最新代码的本地仓库 push 回去
+    $ git push origin master
+    
 参考：[Using Git and Dropbox together effectively?](http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively)
 
 ### 二
