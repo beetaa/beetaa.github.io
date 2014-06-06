@@ -1,0 +1,13 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+@-moz-document domain("jsfiddle.net") {
+    #result > span {
+        display: none;
+    }
+}
+
+@-moz-document domain("todoist.com") {
+    #premium_promotion {
+        display: none;
+    }
+}

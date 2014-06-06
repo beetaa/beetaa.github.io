@@ -1,6 +1,6 @@
 ---
 layout: post
-title: AngularJS 使用技术
+title: AngularJS 实用技术
 description: 驾驭AngularJS，驱动下一代前端开发！
 category: blog
 ---
