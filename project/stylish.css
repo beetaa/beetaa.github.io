@@ -11,3 +11,9 @@
         display: none;
     }
 }
+
+@-moz-document domain("map.baidu.com") {
+    #mapBanner, .logo_nav, #moText, .anchorBL, .anchorTR, #user_info {
+        display: none !important;
+    }
+}
