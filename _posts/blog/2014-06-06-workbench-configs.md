@@ -30,6 +30,8 @@ category: blog
     ~/project $ git remote add origin ~/Dropbox/git/project.git
     ~/project $ git push -u origin master
     
+    # 如果是windows下，路径格式为：file:///e:/sync/dropbox/git/server.git
+    
 3、错误解决：
 
     # 删除 Git 仓库，重建同名的仓库
