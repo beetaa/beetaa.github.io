@@ -43,6 +43,7 @@ category: blog
     $ git push origin master
     
 4、参考文档：
+
 > [Using Git and Dropbox together effectively?](http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively)
 > [Using Dropbox as a Private GitHub](http://jetheis.com/blog/2013/02/17/using-dropbox-as-a-private-github/)
 
@@ -90,6 +91,12 @@ category: blog
         });
     });
     
+3、gulp.js流程图
+
+![](/images/workbench_configs/gulp.png)
+
+4、创建gulp.js插件
+
 5、参考：
 
 * [Gulp.js—比Grunt更易用的前端构建工具](http://www.36ria.com/6373)
