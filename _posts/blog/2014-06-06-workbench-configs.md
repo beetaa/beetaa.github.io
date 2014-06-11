@@ -44,8 +44,8 @@ category: blog
     
 4、参考文档：
 
-> [Using Git and Dropbox together effectively?](http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively)
-> [Using Dropbox as a Private GitHub](http://jetheis.com/blog/2013/02/17/using-dropbox-as-a-private-github/)
+* [Using Git and Dropbox together effectively?](http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively)
+* [Using Dropbox as a Private GitHub](http://jetheis.com/blog/2013/02/17/using-dropbox-as-a-private-github/)
 
 ### 二、用 gulp.js 实现自动化操作
 
@@ -93,9 +93,61 @@ category: blog
     
 3、gulp.js流程图
 
-![](/images/workbench_configs/gulp.png)
+![](/images/workbench_configs/gulp_01.png)
 
-4、创建gulp.js插件
+4、gulp.js插件框架
+
+    // through2 模块是对 node stream 的包装
+    var through = require('through2');
+    var gutil = require('gulp-util');
+    var PluginError = gutil.PluginError;
+    
+    // 定义常数，这里是插件的名称
+    const PLUGIN_NAME = 'gulp-prefixer';
+    
+    // 通过 through 初始化读写流
+    function prefixStream(prefixText) {
+      var stream = through();
+      stream.write(prefixText);
+      return stream;
+    }
+    
+    // 插件功能主函数（处理文件数据）
+    function gulpPrefixer(prefixText) {
+    
+      if (!prefixText) {
+        throw new PluginError(PLUGIN_NAME, "Missing prefix text!");
+      }
+      prefixText = new Buffer(prefixText); // allocate ahead of time
+    
+      // Creating a stream through which each file will pass
+      var stream = through.obj(function(file, enc, callback) {
+        // 如果文件内容为空，则忽略
+        if (file.isNull()) {
+           
+        }
+        // 如果文件内容为buffer，则使用cancat方法
+        if (file.isBuffer()) {
+            file.contents = Buffer.concat([prefixText, file.contents]);
+        }
+        // 如果文件内容为流，则使用pipe方法
+        if (file.isStream()) {
+            file.contents = file.contents.pipe(prefixStream(prefixText));
+        }
+    
+        this.push(file);
+        return callback();
+    
+      });
+    
+      // 返回读写流
+      return stream;
+    };
+    
+    // 导出主功能函数
+    module.exports = gulpPrefixer;
+
+参考：[Writing a plugin](https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/README.md)
 
 5、参考：
 
