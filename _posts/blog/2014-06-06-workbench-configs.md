@@ -46,6 +46,55 @@ category: blog
 > [Using Git and Dropbox together effectively?](http://stackoverflow.com/questions/1960799/using-git-and-dropbox-together-effectively)
 > [Using Dropbox as a Private GitHub](http://jetheis.com/blog/2013/02/17/using-dropbox-as-a-private-github/)
 
-### 二
+### 二、用 gulp.js 实现自动化操作
+
+1、安装gulp.js
+
+    # 全局安装
+    npm install -g gulp
+    # 工程中安装
+    npm install --save-dev gulp
+    # 安装插件
+    npm install --save-dev gulp-util gulp-uglify gulp concat
+
+参考：[gulp.js 插件清单](http://gulpjs.com/plugins/)
+
+2、用task、run、watch、src、dest构建gulpfile.js任务
+
+    // 引入 gulp
+    var gulp = require('gulp');
+    
+    // 引入 插件
+    var compass = require('gulp-compass');
+    
+    // 创建 Compass 任务
+    gulp.task('compass', function() {
+      gulp.src('./scss/**')
+        .pipe(compass({
+            comments: false,
+            css: 'css',
+            sass: 'scss',
+            image: 'img'
+        }));
+    });
+    
+    // 配置默认运行的任务
+    gulp.task('default', function() {
+        gulp.run('compass');
+    
+        gulp.watch([
+            './scss/**',
+            './img/**'
+            ], function(event) {
+            gulp.run('compass');
+        });
+    });
+    
+5、参考：
+
+* [Gulp.js—比Grunt更易用的前端构建工具](http://www.36ria.com/6373)
+* [Gulp.js深入讲解](http://www.36ria.com/6382)
+
+
 
 [Beetaa]:    http://beetaa.com  "Beetaa"
