@@ -93,7 +93,7 @@ category: blog
     
 3、gulp.js流程图
 
-![](/images/workbenchconfigs/gulp.png)
+![gulp流程图](/images/workbenchconfigs/gulp.png)
 
 4、gulp.js插件框架
 
