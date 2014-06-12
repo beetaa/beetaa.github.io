@@ -17,6 +17,23 @@ category: blog
     npm --registry http://registry.cnpmjs.org info underscore   #临时生效
     编辑 .npmrc 文件，加入 registry = http://registry.cnpmjs.org    #永久生效
     
-### 二
+### 二、openshift + tunnelizer
 
-[Beetaa]:    http://beetaa.com  "Beetaa"
+- openshift生成app的ssh访问url，含主机地址+用户名
+- 本地keygen密钥对，将公钥上传到openshift
+- 从 [Tunnelizer官网][Tunnelizer官网] 或 [百度网盘][百度网盘] 下载 ``Tunnelizer``
+- login 标签 - 填入主机地址、用户名
+- login 标签 - 点击 ``user keypair manager`` 导入私钥，并从用户名下面的下拉框
+  中选择 ``publickey - slot 1``
+- services 标签 - enabled sock，根据需要填入端口号
+- options 标签 - 取消 ``open terminal`` 和 ``open sftp``
+- 保存配置的 profile
+- 开机启动并最小化：在快捷方式属性中修改为 ``"tunnelizer.exe" -loginOnStartup``
+- ok
+
+参考：[OpenShift SSH fq 教程](https://zero-rufeng.rhcloud.com/?p=21)
+
+
+[Beetaa]: http://beetaa.com  "Beetaa"
+[Tunnelizer官网]: http://www.bitvise.com/download-area
+[百度网盘]: http://pan.baidu.com/share/link?shareid=107155&uk=2584079325
