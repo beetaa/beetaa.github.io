@@ -31,7 +31,7 @@ category: blog
     # 服务器端操作
     > cat pubkey.txt >> ~/.ssh/authorized_keys
     > chmod 700 ~/.ssh
-    > chmod 600 ~/.ssh/*
+    > chmod 600 ~/.ssh/ *
     > sudo vim /etc/ssh/ssh_config      # 设置 PubkeyAuthentication yes
     > sudo vim /etc/ssh/sshd_config     # 设置 ClientAliveCountMax 600
     > sudo /etc/init.d/sshd restart
