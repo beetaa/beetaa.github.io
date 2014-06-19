@@ -13,38 +13,6 @@ category: blog
     # 修改软件源
     > sudo gedit /etc/apt/sources.list
     
-    # 配置ssh密钥登录
-    # 1 - 将本地 ~/.ssh/id_dsa.pub 复制到服务器
-    # 2 - 将上述的key内容添加到服务器端的 ~/.ssh/authorized_keys 文件中
-    # 3 - 设置权限
-    # 4 - 服务器端ssh配置文件，打开密钥认证选项
-    > scp ~/.ssh/id_rsa.pub user@remote.host:pubkey.txt
-    > ssh user@remote.host
-    > cat pubkey.txt >> ~/.ssh/authorized_keys
-    > chmod 700 ~/.ssh
-    > chmod 600 ~/.ssh/*
-    > sudo gedit /etc/ssh/ssh_config
-        # 设置 PubkeyAuthentication yes
-    
-    # 如果使用putty登录，则先使用puttygen.exe转换密钥
-    
-    # 设置ssh保持连接
-    # 1 - 服务器端
-    > sudo gedit /etc/ssh/sshd_config
-        # 设置 ClientAliveCountMax 600
-    > sudo /etc/init.d/sshd restart
-    # 2 - 客户端
-    > sudo gedit /etc/ssh/ssh_config
-        # 设置 ServerAliveInterval 60
-    
-    # 创建并使用swap分区 - 少量多个，不要放在/tmp目录下
-    > sudo mkdir /var/swap
-    > dd if=/dev/zero of=/var/swap/swap01 bs=1M count=1024
-    mkswap -f /var/swap/swap01
-    sudo swapon /var/swap/swap01
-    sudo vim /etc/fstab 添加一行 /var/swap/swap01  swap  swap  defaults  0  0
-    # 重复上述步骤可创建多个swap分区
-    
     # 安装基本软件和编译库
     > sudo apt-get install python php-cli git curl unrar unzip
     > sudo apt-get install python-dev python-software-properties python-setuptools
@@ -52,6 +20,34 @@ category: blog
     > sudo apt-get install python-openssl python-crypto
     # 以下python库可选
     > sudo apt-get install python-greenlet python-gevent python-vte python-appindicator
+    
+### 配置ssh通过密钥登录并可保持长连接
+
+    # 本地客户端操作
+    > ssh-keygen -t rsa # 生成key对
+    > scp ~/.ssh/id_rsa.pub user@remote.host:pubkey.txt # 将公钥上传至服务器
+    > sudo gedit /etc/ssh/ssh_config    # 设置 ServerAliveInterval 60
+    
+    # 服务器端操作
+    > cat pubkey.txt >> ~/.ssh/authorized_keys
+    > chmod 700 ~/.ssh
+    > chmod 600 ~/.ssh/*
+    > sudo vim /etc/ssh/ssh_config      # 设置 PubkeyAuthentication yes
+    > sudo vim /etc/ssh/sshd_config     # 设置 ClientAliveCountMax 600
+    > sudo /etc/init.d/sshd restart
+    
+    # 如果客户端使用putty登录，则先使用puttygen.exe将密钥转换为ppk格式
+    
+### 创建并使用swap分区
+    
+    > sudo mkdir /var/swap
+    > dd if=/dev/zero of=/var/swap/swap01 bs=1M count=1024
+    > mkswap -f /var/swap/swap01
+    > sudo swapon /var/swap/swap01
+    > sudo vim /etc/fstab 添加一行 /var/swap/swap01  swap  swap  defaults  0  0
+    
+    # 重复上述步骤可创建多个swap分区
+    # swap分区要少量多个，而且不要放在/tmp目录下
     
 ### 配置通过mail命令发送邮件
 
