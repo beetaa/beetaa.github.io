@@ -28,8 +28,10 @@ category: blog
 - services 标签 - enabled sock，根据需要填入端口号
 - options 标签 - 取消 ``open terminal`` 和 ``open sftp``
 - 保存配置的 profile
-- 开机启动并最小化：在快捷方式属性中修改为 ``"tunnelizer.exe" -loginOnStartup``
+- 开机启动并最小化：在快捷方式属性中修改为 ``"tunnelizer.exe" -profile=something.tlp -loginOnStartup``
 - ok
+
+- 如果dns污染，可通过ip138等反查主机地址的ip，写入系统 ``host`` 文件
 
 参考：[OpenShift SSH fq 教程](https://zero-rufeng.rhcloud.com/?p=21)
 
