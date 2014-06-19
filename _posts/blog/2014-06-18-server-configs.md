@@ -23,16 +23,19 @@ category: blog
     > cat pubkey.txt >> ~/.ssh/authorized_keys
     > chmod 700 ~/.ssh
     > chmod 600 ~/.ssh/*
-    > sudo gedit /etc/ssh/ssh_config # 设置 PubkeyAuthentication yes
+    > sudo gedit /etc/ssh/ssh_config
+        # 设置 PubkeyAuthentication yes
     
     # 如果使用putty登录，则先使用puttygen.exe转换密钥
     
     # 设置ssh保持连接
     # 1 - 服务器端
-    > sudo gedit /etc/ssh/sshd_config # 设置 ClientAliveCountMax 600
+    > sudo gedit /etc/ssh/sshd_config
+        # 设置 ClientAliveCountMax 600
     > sudo /etc/init.d/sshd restart
     # 2 - 客户端
-    > sudo gedit /etc/ssh/ssh_config # 设置 ServerAliveInterval 60
+    > sudo gedit /etc/ssh/ssh_config
+        # 设置 ServerAliveInterval 60
     
     # 创建并使用swap分区 - 少量多个，不要放在/tmp目录下
     > sudo mkdir /var/swap
