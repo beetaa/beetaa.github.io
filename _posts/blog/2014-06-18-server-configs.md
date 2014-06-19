@@ -5,6 +5,26 @@ description: 走过的弯路，以后不要再走。
 category: blog
 ---
 
+### 基本环境
+
+    # 修改命令提示符
+    > gedit ~/.bashrc
+    
+    # 修改软件源
+    > sudo gedit /etc/apt/sources.list
+    
+    # 配置ssh密钥登录
+    # 1 - 将本地 ~/.ssh/id_dsa.pub 复制到服务器
+    # 2 - 将上述的key内容添加到服务器端的 ~/.ssh/authorized_keys 文件中
+    # 3 - 设置权限
+    # 4 - 服务器端ssh配置文件，打开密钥认证选项
+    > scp ~/.ssh/id_rsa.pub user@remote.host:pubkey.txt
+    > ssh user@remote.host
+    > cat pubkey.txt >> ~/.ssh/authorized_keys
+    > chmod 700 ~/.ssh
+    > chmod 600 ~/.ssh/*
+    > sudo gedit /etc/ssh/ssh_config 设置 PubkeyAuthentication yes
+
 ### vsftpd的安装和配置
 
     # 安装
