@@ -140,7 +140,7 @@ category: blog
     # 配置iptables转发并自让其随系统启动
     > sudo vim /etc/rc.local
     # 添加以下内容
-    iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j SNAT --to-source VPN服务器的公网IP
+    iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j SNAT --to-source VPN_IP
     # 192.168.0.0 要和 /etc/pptpd.conf 中的地址段一致
     # 24是掩码，代表24个1
     # --to-source 后面是VPN服务器的公网IP
@@ -149,26 +149,18 @@ category: blog
     # 重启系统
     > reboot
     
-**常见问题及解决**
+    # 常见问题及解决
+    
+    Cannot determine ethernet address for proxy ARP
+    # dns的设置问题，检查/etc/resolve.conf配置文件与/etc/ppp/option文件中的dns server的设置。
+    
+    pppd[819]: Couldn't open the /dev/ppp device: No such device or address
+    pppd[819]: Please load the ppp_generic kernel module.
+    # 联系vps服务商，提供这个错误提示，他们知道该怎么处理。
+    
+    pppd[716]: Couldn't set tty to PPP discipline: Invalid argument
+    # 联系vps服务商处理。
 
-* Cannot determine ethernet address for proxy ARP
-> dns的设置问题，检查/etc/resolve.conf配置文件与/etc/ppp/option文件中的dns server的设置。
-
-* pppd[819]: Couldn't open the /dev/ppp device: No such device or address
-* pppd[819]: Please load the ppp_generic kernel module.
-> 联系vps服务商，提供这个错误提示，他们知道该怎么处理。
-
-* pppd[716]: Couldn't set tty to PPP discipline: Invalid argument
-> 联系vps服务商处理。
-
-**用SoftEther VPN是一个可以替代的方案**
-
-* 方便，一键安装，一键启动
-* 强大，兼容OpenVPN协议，支持IPSec
-* 支持通过windows客户端对远程服务器配置
-* 开源，全程支持中文
-* 虽然是小日本一所大学的项目，但应该是中国人开发的
-
-[SoftEther官网](http://www.softether.org/) 
-源码托管在[Github](https://github.com/SoftEtherVPN/SoftEtherVPN/)
+SoftEther是一个可替代的VPN方案，[SoftEther官网](http://www.softether.org/) 
+源码托管在[Github](https://github.com/SoftEtherVPN/SoftEtherVPN/) 。
     
