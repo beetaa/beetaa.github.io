@@ -18,7 +18,7 @@ category: blog
     > sudo apt-get install python php5 git curl unrar unzip
     > sudo apt-get install python-dev python-software-properties python-setuptools
     > sudo apt-get install build-essential g++ gcc make automake autoconf libgtk2.0-dev
-    > sudo apt-get install python-openssl python-crypto
+    > sudo apt-get install python-openssl python-crypto libxml2-dev
     # 以下python库可选
     > sudo apt-get install python-greenlet python-gevent python-vte python-appindicator
     
@@ -183,4 +183,27 @@ category: blog
 
 另外，SoftEther是一个可替代的VPN方案，[SoftEther官网](http://www.softether.org/) 
 源码托管在[Github](https://github.com/SoftEtherVPN/SoftEtherVPN/) 。
+
+### 安装cloud9作为服务器端编辑器
+
+    # 安装预需库
+    > sudo apt-get install libxml2-dev
+    
+    # 安装cloug9
+    > git clone https://github.com/ajaxorg/cloud9.git /var/tools/cloud9
+    > cd /var/tools/cloud9
+    > npm install
+    
+    # 运行
+    > bin/cloud9.sh -w ~/workspace/river -l 0.0.0.0
+    # 如要求登录
+    > bin/cloud9.sh -w ~/workspace/river -l 0.0.0.0 --username 用户名 --password 密码
+    # 如需推出终端后继续后台运行
+    nohup bin/cloud9.sh -w ~/workspace/river -l 0.0.0.0 &
+    
+    # 使用
+    浏览器打开 http://服务器IP:3131
+    端口号可以在运行cloud9的时候设定，默认为3131
+    
+    ok！
     
