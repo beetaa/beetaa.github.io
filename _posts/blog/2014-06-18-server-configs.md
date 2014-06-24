@@ -12,14 +12,34 @@ category: blog
     
     # 修改软件源
     > sudo gedit /etc/apt/sources.list
+    # 一些源加上 multiverse
     
     # 安装基本软件和编译库
-    > sudo apt-get install python php-cli git curl unrar unzip
+    > sudo apt-get install python php5 git curl unrar unzip
     > sudo apt-get install python-dev python-software-properties python-setuptools
     > sudo apt-get install build-essential g++ gcc make automake autoconf libgtk2.0-dev
     > sudo apt-get install python-openssl python-crypto
     # 以下python库可选
     > sudo apt-get install python-greenlet python-gevent python-vte python-appindicator
+    
+### 程序运行环境
+
+    # 添加源：nodejs, redis, mongodb, zeromq, libpgm, nginx
+    > sudo add-apt-repository ppa:chris-lea/node.js
+    > sudo add-apt-repository ppa:rwky/redis
+    > sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+    > echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+    > sudo add-apt-repository ppa:chris-lea/zeromq
+    > sudo add-apt-repository ppa:chris-lea/libpgm
+    > sudo add-apt-repository ppa:nginx/stable
+    
+    # 安装软件
+    > sudo apt-get install nodejs redis-server mongodb-10gen nginx varnish
+    > sudo apt-get install libzmq3-dbg libzmq3-dev libzmq3 libav-tools graphicsmagick
+    
+    # 安装node库
+    > sudo npm install -g underscore hiredis redis mongoose zmq grunt-cli gulp
+    > sudo npm install -g express socket.io nodemailer request cheerio
     
 ### 配置ssh通过密钥登录并可保持长连接
 
@@ -161,6 +181,6 @@ category: blog
     pppd[716]: Couldn't set tty to PPP discipline: Invalid argument
     # 联系vps服务商处理。
 
-SoftEther是一个可替代的VPN方案，[SoftEther官网](http://www.softether.org/) 
+另外，SoftEther是一个可替代的VPN方案，[SoftEther官网](http://www.softether.org/) 
 源码托管在[Github](https://github.com/SoftEtherVPN/SoftEtherVPN/) 。
     
