@@ -152,7 +152,7 @@ category: blog
     # 常见问题及解决
     
     Cannot determine ethernet address for proxy ARP
-    # dns的设置问题，检查/etc/resolve.conf配置文件与/etc/ppp/option文件中的dns server的设置。
+    # dns的设置问题，检查/etc/resolve.conf和/etc/ppp/option中的dns设置。
     
     pppd[819]: Couldn't open the /dev/ppp device: No such device or address
     pppd[819]: Please load the ppp_generic kernel module.
