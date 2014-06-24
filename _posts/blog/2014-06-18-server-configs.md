@@ -96,3 +96,61 @@ category: blog
     > sudo /etc/init.d/vsftpd restart
     # 或
     > sudo service vsftpd restart
+    
+### pptpd vpn 服务器安装和配置
+
+    # 验证是否开启ppp
+    > cat /dev/ppp
+    # 成功标志：cat: /dev/ppp: No such file or directory 
+    # 失败标志：cat: /dev/ppp: Permission denied，请联系vps服务商开启。
+    
+    # 验证开启tun/tap，如果只用pptp方式，则不需要
+    > cat /dev/net/tun
+    # 成功标志：
+    
+    # 安装pptpd、iptables
+    > sudo apt-get install pptpd iptables
+    
+    # 配置/etc/pptpd.conf
+    > sudo vim /etc/pptpd.conf
+    # 修改或添加以下两行
+    localip 192.168.0.1
+    remoteip 192.168.0.234-238,192.168.0.245
+    # 其中localip为vpn服务器用到的网址
+    # remoteip为客户端可用的ip地址，可以是地址范围
+    
+    # 配置/etc/ppp/pptpd-options
+    > sudo vim /etc/ppp/pptpd-options
+    # 修改或添加dns配置
+    ms-dns 8.8.8.8
+    ms-dns 8.8.4.4
+    
+    # 配置登录用户和密码
+    > sudo vim /etc/ppp/chap-secrets
+    # 每行一个用户信息（用户名 服务器名 密码 ip限制），如：
+    user pptpd password *
+    # 建议多配置几个，用自己的客户端命名，如T60P, Meizu等
+    
+    # 开启 ipv4 forward
+    > sudo vim /etc/sysctl.conf
+    # 去掉 #net.ipv4.ip_forward=1 前的 # 号
+    > sudo sysctl -p
+    # 如果显示 net.ipv4.ip_forward = 1 则表示已生效
+    
+    # 配置iptables转发并自让其随系统启动
+    > sudo vim /etc/rc.local
+    # 添加以下内容
+    iptables -t nat -A POSTROUTING -s 192.168.0.0/24 -j SNAT --to-source VPN服务器的公网IP
+    # 192.168.0.0 要和 /etc/pptpd.conf 中的地址段一致
+    # 24是掩码，代表24个1
+    # --to-source 后面是VPN服务器的公网IP
+    > chmod +x /etc/rc.local
+    
+    # 重启系统
+    > reboot
+    
+**常见问题及解决**
+
+* Cannot determine ethernet address for proxy ARP
+> dns的设置问题，检查/etc/resolve.conf配置文件与/etc/ppp/option文件中的dns server的设置。
+    
