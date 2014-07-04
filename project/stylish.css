@@ -1,10 +1,14 @@
 @namespace url(http://www.w3.org/1999/xhtml);
 
+/* jsffdle.net */
+
 @-moz-document domain("jsfiddle.net") {
     #result > span {
         display: none;
     }
 }
+
+/* todoist.com */
 
 @-moz-document domain("todoist.com") {
     #premium_promotion {
@@ -12,8 +16,18 @@
     }
 }
 
+/* map.baidu.com */
+
 @-moz-document domain("map.baidu.com") {
     #mapBanner, .logo_nav, #moText, .anchorBL, .anchorTR, #user_info {
+        display: none !important;
+    }
+}
+
+/* qingting.fm */
+
+@-moz-document domain("qingting.fm") {
+    .latest, #bdshare, a.entry, #content > a, #nav, #searchBar {
         display: none !important;
     }
 }

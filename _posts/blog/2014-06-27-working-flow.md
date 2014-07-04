@@ -14,4 +14,16 @@ category: blog
 # 如果不重定向到null, nodemon会马上退出
 ```
     
-2、使用gulp
+2、使用gulp.js
+
+### 测试环境自动化
+
+1、使用 pageres 抓取页面的不同分辨率渲染结果
+
+```sh
+> sudo npm install -g pageres
+> pageres [ beetaa.com 1280x800 1024x768 800x600 ] --crop
+```
+
+pageres@[github](https://github.com/sindresorhus/pageres)。
+pageres还可以和[grunt.js](https://github.com/sindresorhus/grunt-pageres)一起使用。

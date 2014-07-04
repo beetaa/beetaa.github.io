@@ -207,3 +207,8 @@ category: blog
     
     ok！
     
+### 使用youtube-dl和bpcuploder.php下载使用youtube资源
+
+    # 安装
+    
+### 使用cron定时访问，是heroku、openshift、cloud9保持激活
