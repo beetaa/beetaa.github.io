@@ -9,7 +9,8 @@ category: blog
 
 ### 1、基础环境
 
-- **主环境**：Win7 64位中文版
+- 主环境：Win7 64位中文版
+- 客环境：Docker(Virtualbox+Ubuntu)
 - 输入法：搜狗
 - 杀毒：百度杀毒
 - 浏览器：Firefox + Chrome + IE
@@ -19,10 +20,17 @@ category: blog
 
 ### 2、基础工具
 
+- 办公：
+    > - Microsoft Office 2010 64位中文版
+    > - Adobe Acrobat 9 Professional 中文版
+- 设计：
+    > - Adobe Photoshop CS3 中文版
+    > - Adobe Illustrator CS3 中文版
+    > - AxureRP Professional 7.0
+- 编辑器：Sublime Text 3
 
 
-
-## 附录
+**附录**
 
 pageres@[github](https://github.com/sindresorhus/pageres)。
 pageres还可以和[grunt.js](https://github.com/sindresorhus/grunt-pageres)一起使用。
