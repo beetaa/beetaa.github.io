@@ -7,10 +7,10 @@ category: blog
 
 ### 桌面环境框架
 
-1、主环境：Win7 64位中文版
-2、输入法：搜狗
-3、杀毒：百度杀毒
-4、浏览器：Firefox + Chrome + IE
+# 主环境：Win7 64位中文版
+# 输入法：搜狗
+# 杀毒：百度杀毒
+# 浏览器：Firefox + Chrome + IE
 
 
 
