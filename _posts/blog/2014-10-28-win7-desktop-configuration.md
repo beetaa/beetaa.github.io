@@ -5,11 +5,11 @@ description: 给予Win7+Desker的工作桌面配置过程。
 category: blog
 ---
 
-## 桌面环境框架
+## 一、桌面环境框架
 
 ### 1、基础环境
 
-- 主环境：Win7 64位中文版
+- *主环境*：Win7 64位中文版
 - 输入法：搜狗
 - 杀毒：百度杀毒
 - 浏览器：Firefox + Chrome + IE
