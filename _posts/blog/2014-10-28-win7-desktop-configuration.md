@@ -8,6 +8,7 @@ category: blog
 桌面环境框架
 ============
 
+
 1、基础环境
 
 - 主环境：Win7 64位中文版
@@ -16,8 +17,9 @@ category: blog
 - 浏览器：Firefox + Chrome + IE
 - 翻墙：
 
-    > 基于VPS的VPN全局翻墙
-    > 基于Tunnelize + Foxyproxy(或SwitchyProxy) + SSH的智能代理翻墙
+    > - 基于VPS的VPN全局翻墙
+    > - 基于Tunnelize + Foxyproxy(或SwitchyProxy) + SSH的智能代理翻墙
+
 
 2、基础工具
 
