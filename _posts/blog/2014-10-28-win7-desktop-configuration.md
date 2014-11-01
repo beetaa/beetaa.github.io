@@ -16,20 +16,20 @@ Ubuntu中自动检测变动和重启服务器端提供服务。
 发时就模拟服务器端的环境；（3）做到前后端开发环境分离，杜绝在一个环境中过于复杂的
 配置；（4）Virtualbox的便携性，并享受Win7主系统的翻墙设置。
 
-1. **Win7 核心功能及软件**：
-  > - 基本：virtualbox, git, nodejs, npm, vpn, tunnelize, firefox
-  > - 编辑器：sublime_text 3
-  > - 设计：axureRP, photoshop, illustrator
-  > - 办公：office2003, acrobat
-  > - node_modules：bower, gulp, cordova, ionic, live-server
-  > - ionic环境: jdk, ant, adt
-  > - 其他：winrar, 迅雷, python, youtube_dl
+### Win7 核心功能及软件：
+- 基本：virtualbox, git, nodejs, npm, vpn, tunnelize, firefox
+- 编辑器：sublime_text 3
+- 设计：axureRP, photoshop, illustrator
+- 办公：office2003, acrobat
+- node_modules：bower, gulp, cordova, ionic, live-server
+- ionic环境: jdk, ant, adt
+- 其他：winrar, 迅雷, python, youtube_dl
 
-1. **Ubuntu 核心功能及软件**：
-  > - 基本：build-essential, virtualbox_addons, git, unrar, unzip
-  > - 基本：nodejs, npm, redis, mongodb, nginx
-  > - node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
-  > - 其他：配置与win7共享目录
+### Ubuntu 核心功能及软件：
+- 基本：build-essential, virtualbox_addons, git, unrar, unzip
+- 基本：nodejs, npm, redis, mongodb, nginx
+- node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
+- 其他：配置与win7共享目录
 
 ## 一、Win7环境配置
 
