@@ -30,7 +30,6 @@ Win7主系统的翻墙设置。
 - node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
 - 其他：配置与win7共享目录
 
-------
 
 ## 一、Win7环境配置
 
