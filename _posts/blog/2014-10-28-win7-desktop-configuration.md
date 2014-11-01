@@ -16,7 +16,7 @@ Ubuntu中自动检测变动和重启服务器端提供服务。
 发时就模拟服务器端的环境；（3）做到前后端开发环境分离，杜绝在一个环境中过于复杂的
 配置；（4）Virtualbox的便携性，并享受Win7主系统的翻墙设置。
 
-### Win7 核心功能及软件：
+### （一）Win7 核心功能及软件：
 - 基本：virtualbox, git, nodejs, npm, vpn, tunnelize, firefox
 - 编辑器：sublime_text 3
 - 设计：axureRP, photoshop, illustrator
@@ -25,7 +25,7 @@ Ubuntu中自动检测变动和重启服务器端提供服务。
 - ionic环境: jdk, ant, adt
 - 其他：winrar, 迅雷, python, youtube_dl
 
-### Ubuntu 核心功能及软件：
+### （二）Ubuntu 核心功能及软件：
 - 基本：build-essential, virtualbox_addons, git, unrar, unzip
 - 基本：nodejs, npm, redis, mongodb, nginx
 - node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
@@ -33,12 +33,12 @@ Ubuntu中自动检测变动和重启服务器端提供服务。
 
 ## 一、Win7环境配置
 
-### VPN全局翻墙
+### （一）VPN全局翻墙
 
 1. 在VPS服务器中[安装及配置VPN服务](http://#)
 2. 在Win7中新建VPN链接，如下图
 
-### Tunnelize局部翻墙
+### （二）Tunnelize局部翻墙
 
 1. 在openshift中新建一个app，得到ssh访问url
 2. 本地生成公私秘钥对，将公钥上传至openshift
