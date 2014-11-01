@@ -14,6 +14,7 @@ Ubuntu中自动检测变动和重启服务器端提供服务。这样做的好�
 Win7主系统的翻墙设置。
 
 **Win7 核心功能及软件：**
+
 - 基本：virtualbox, git, nodejs, npm, vpn, tunnelize, firefox
 - 编辑器：sublime_text 3
 - 设计：axureRP, photoshop, illustrator
@@ -23,6 +24,7 @@ Win7主系统的翻墙设置。
 - 其他：winrar, 迅雷, python, youtube_dl
 
 **Ubuntu 核心功能及软件：**
+
 - 基本：build-essential, virtualbox_addons, git, unrar, unzip
 - 基本：nodejs, npm, redis, mongodb, nginx
 - node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
@@ -30,12 +32,12 @@ Win7主系统的翻墙设置。
 
 ## 一、Win7环境配置
 
-### （一）VPN全局翻墙
+**VPN全局翻墙**
 
 1. 在VPS服务器中[安装及配置VPN服务](http://#)
 2. 在Win7中新建VPN链接，如下图
 
-### （二）Tunnelize局部翻墙
+**Tunnelize局部翻墙**
 
 1. 在openshift中新建一个app，得到ssh访问url
 2. 本地生成公私秘钥对，将公钥上传至openshift
