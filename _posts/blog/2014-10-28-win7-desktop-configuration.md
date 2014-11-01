@@ -44,6 +44,20 @@ Win7主系统的翻墙设置。
 2. 本地生成公私秘钥对，将公钥上传至openshift
 3. 安装配置tunnelize，并让其开机自动运行
 4. 配置firefox + foxyproxy
+5. 
+
+## 二、Ubuntu@virtualbox环境配置
+
+**为ubuntu安装virtualbox_addons**
+
+    # 安装必需的库文件
+    apt-get install dkms build-essential linux-headers-generic
+    -
+    # 将光盘文件mount到cdrom中
+    mount /dev/sr0 /media/cdrom
+    -
+    # 运行光盘中的addons安装程序
+    sh ./VBoxLinuxAdditions.run
 
 
 **附录**
