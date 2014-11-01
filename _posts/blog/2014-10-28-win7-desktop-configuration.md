@@ -58,6 +58,8 @@ Win7主系统的翻墙设置。
     -
     # 运行光盘中的addons安装程序
     sh ./VBoxLinuxAdditions.run
+    
+参考原文[HOWTO: Install Linux Guest Additions + Xorg config](https://forums.virtualbox.org/viewtopic.php?f=3&t=15679)
 
 
 **附录**
