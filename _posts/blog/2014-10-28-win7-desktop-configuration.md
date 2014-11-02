@@ -19,7 +19,7 @@ Win7主系统的翻墙设置。
 - 编辑器：sublime_text 3
 - 设计：axureRP, photoshop, illustrator
 - 办公：office2003, acrobat
-- node_modules：bower, gulp, cordova, ionic, live-server
+- node_modules：bower, gulp, puer, cordova, ionic
 - ionic环境: jdk, ant, adt
 - 其他：winrar, 迅雷, python, youtube_dl
 
@@ -31,7 +31,7 @@ Win7主系统的翻墙设置。
 - 其他：配置与win7共享目录
 
 
-## 一、Win7环境配置
+### 一、Win7环境配置
 
 **VPN全局翻墙**
 
@@ -46,9 +46,9 @@ Win7主系统的翻墙设置。
 4. 配置firefox + foxyproxy
 5. 
 
-## 二、Ubuntu@virtualbox环境配置
+### 二、Ubuntu@virtualbox环境配置
 
-**为ubuntu安装virtualbox_addons** [参考原文](https://forums.virtualbox.org/viewtopic.php?f=3&t=15679)
+**安装virtualbox_addons** [参考原文](https://forums.virtualbox.org/viewtopic.php?f=3&t=15679)
 
     # 安装必需的库文件
     apt-get install dkms build-essential linux-headers-generic
@@ -59,6 +59,7 @@ Win7主系统的翻墙设置。
     # 运行光盘中的addons安装程序
     sh ./VBoxLinuxAdditions.run
     
+**配置开机自动加载共享目录**
 
 **附录**
 
