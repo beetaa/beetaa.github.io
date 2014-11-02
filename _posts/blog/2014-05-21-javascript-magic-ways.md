@@ -49,6 +49,49 @@ category: blog
     # 以下就一样了
     
     
+### nodejs包的编写规范和使用
+
+    #如果包需要用到事件，则引入events模块
+    var EventEmitter = require('events').EventEmitter;
+     
+    # 通过包的名称直接可以引用一个初始化的实例
+    # 如：var pack = require('./my_packaage')
+    # pack 变量直接就是一个实例化以后的包
+    exports = module.exports = new Package();
+     
+    # 通过在包名称后面引用暴露后的名字，可以得到未初始化的类
+    # 这样可以在使用时通过 new 关键字多次实例化
+    # 如：var Pack = require('./mypackage').Package
+    # 可通过：var pack_01 = new Pack(), pack_02 = new Pack(); 得到多个独立的实例
+    exports.Package = Package;
+     
+    # 定义包的类和属性，注意不能通过“var Package = function() {}”的形式定义，否则出错
+    function Package() {
+        //定义类的属性
+        this.name = 'MyName';
+        //数组、列表的属性名称用复数
+        this.tags = [];
+        //私有属性名称前面加下划线
+        this._secrect = '$%^&*43';
+    }
+     
+    # 让包的类继承事件特性
+    Package.prototype.__proto__ = EventEmitter.prototype;
+     
+    # 通过类的prototype定义类的方法
+    Package.prototype.fun_01 = function() {
+        //
+    }
+     
+    Package.prototype.fun_02 = function() {
+        //
+    }
+     
+    # 用在类中但不暴露的通用方法可以定义在包的最后，名称前后用双下划线
+    function __common_fun_01__() {
+        //
+    }
+    
     
 ### 最简单的回调函数判断和执行
 
