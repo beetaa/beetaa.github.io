@@ -5,17 +5,17 @@ description: 一些 JS 编程小技巧、小片段，不惊世，不骇俗，关
 category: blog
 ---
 
-### nodejs原生事件编程模式
+### nodejs原生事件编程模式 - util.inherits方式
 
     # 事件编程以来的两个库events, util
     var events = require('events');
     var util = require('util');
      
-    # 定义需要事件化的类，并使用util.inherits工具让其继承event.EventEmiter
+    # 定义需要事件化的类，并使用util.inherits工具让其继承event.EventEmitter
     var MyClass = function() {
-        events.EventEmiter.call(this);
+        events.EventEmitter.call(this);
     }
-    util.inherits(MyClass, events.EventEmiter);
+    util.inherits(MyClass, events.EventEmitter);
      
     # 通过自定义类的prototype来定义具体的方法，一般在其中Emit出事件
     MyClass.prototype.myfun_01 = function(data) {
@@ -34,6 +34,20 @@ category: blog
      
     # 在适当的时候调用该实例的myfun_01方法，即可触发event_01事件
     myclass_01.myfun_01('我是myfun_01方法，调用后触发event_01事件，这条消息就是事件附带的参数');
+    
+    
+### nodejs原生事件编程模式 - __proto__方式
+
+    var EventEmitter = require('events').EventEmitter;
+     
+    var MyClass = function() {
+        //这里以this方式定义数据和方法
+    }
+     
+    MyClass.prototype.__proto__ = EventEmitter.prototype;
+     
+    # 以下就一样了
+    
     
     
 ### 最简单的回调函数判断和执行
