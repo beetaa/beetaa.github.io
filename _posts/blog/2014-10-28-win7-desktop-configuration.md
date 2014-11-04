@@ -19,7 +19,7 @@ Win7主系统的翻墙设置。
 - 编辑器：sublime_text 3
 - 设计：axureRP, photoshop, illustrator
 - 办公：office2003, acrobat
-- node_modules：bower, gulp, puer, cordova, ionic
+- node_modules：bower, gulp, karma, puer, nodemon, cordova, ionic
 - ionic环境: jdk, ant, adt
 - 其他：winrar, 迅雷, python, youtube_dl
 
@@ -27,7 +27,7 @@ Win7主系统的翻墙设置。
 
 - 基本：build-essential, virtualbox_addons, git, unrar, unzip
 - 基本：nodejs, npm, redis, mongodb, nginx
-- node_modules：underscore, redis, mongoose, gulp, express, sock.io, hapi, nodemon
+- node_modules：underscore, redis, mongoose, gulp, karma, express, sock.io, hapi, nodemon
 - 其他：配置与win7共享目录
 
 
@@ -52,10 +52,10 @@ Win7主系统的翻墙设置。
 
     # 安装必需的库文件
     apt-get install dkms build-essential linux-headers-generic
-    -
+     
     # 将光盘文件mount到cdrom中
     mount /dev/sr0 /media/cdrom
-    -
+     
     # 运行光盘中的addons安装程序
     sh ./VBoxLinuxAdditions.run
     
