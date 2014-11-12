@@ -15,7 +15,7 @@ Win7主系统的翻墙设置。
 
 **Win7 核心功能及软件：**
 
-- 基本：virtualbox, git, nodejs, npm, vpn, tunnelize, firefox
+- 基本：virtualbox, git, dropbox, nodejs, npm, vpn, tunnelize, firefox
 - 编辑器：sublime_text 3
 - 设计：axureRP, photoshop, illustrator
 - 办公：office2003, acrobat

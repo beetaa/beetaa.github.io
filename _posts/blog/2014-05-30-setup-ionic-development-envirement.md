@@ -34,7 +34,7 @@ category: blog
 
 1. 下载链接：[ADT-Bundle](http://developer.android.com/sdk/index.html)
 2. 安装，将 zip 文件直接解压至``C:\Program Files\adt-bundle``
-2. 设置系统变量``ANDROID_HOME``为``C:\Program Files\adt-bundle\sdk\tools`` ，**Cordova需要用到这一变量**。
+2. 设置系统变量``ANDROID_HOME``为``C:\Program Files\adt-bundle\sdk`` ，**Cordova需要用到这一变量**。
 3. 配置路径，将``C:\Program Files\adt-bundle\sdk\platform-tools``和``C:\Program Files\adt-bundle\sdk\tools``加入 Path
 4. 为``C:\Program Files\adt-bundle\eclipse\eclipse.exe``建立桌面快捷方式
 5. 测试：运行 Eclipse
