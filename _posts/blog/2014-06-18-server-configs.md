@@ -22,6 +22,17 @@ category: blog
     # 以下python库可选
     > sudo apt-get install python-greenlet python-gevent python-vte python-appindicator
     
+### 安装 node.js
+
+    # 设置安装环境
+    curl -sL https://deb.nodesource.com/setup | sudo bash -
+    
+    # 安装
+    sudo apt-get install -y nodejs
+    
+[node.js 官方安装介绍](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions)
+
+    
 ### 程序运行环境
 
     # 添加源：nodejs, redis, mongodb, zeromq, libpgm, nginx
