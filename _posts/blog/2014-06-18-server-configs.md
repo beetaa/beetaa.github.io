@@ -67,6 +67,29 @@ category: blog
     
 [redis 官方安装指引](http://redis.io/download)  |  [redis 配置整理](http://blog.phpfs.com/archives/1602.html)
     
+### 四、安装 mongodb
+
+    # 通过官方下载
+    curl -O http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.6.6.tgz
+    # 或者先用迅雷下载到本地在 SCP 到服务器
+    scp mongodb-linux-x86_64-2.6.6.tgz root@hostip:/tmp/
+    
+    # 解压
+    tar -zxvf mongodb-linux-x86_64-2.6.6.tgz
+    
+    # 将解压目录的 bin 子目录的所有文件拷贝到执行文件夹
+    cd mongodb-linux-x86_64-2.6.6/bin
+    cp * /usr/local/bin/
+    
+    # 建立数据库文件夹和日志文件夹
+    mkdir /var/lib/mongodb
+    mkdir /var/log/mongodb
+    
+    # 后台运行 mongodb 服务器
+    mongod --dbpath /var/lib/mongodb/ --logpath /var/log/mongodb/mongodb.log --logappend --fork
+    
+[mongodb 官方安装指南](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/)
+    
 ### 程序运行环境
 
     # 添加源：nodejs, redis, mongodb, zeromq, libpgm, nginx
