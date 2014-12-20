@@ -5,7 +5,7 @@ description: 走过的弯路，以后不要再走。
 category: blog
 ---
 
-### 基本环境
+### 一、基本环境
 
     # 修改命令提示符
     > gedit ~/.bashrc
@@ -22,7 +22,7 @@ category: blog
     # 以下python库可选
     > sudo apt-get install python-greenlet python-gevent python-vte python-appindicator
     
-### 安装 node.js
+### 二、安装 node.js
 
     # 设置安装环境
     curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -32,6 +32,40 @@ category: blog
     
 [node.js 官方安装介绍](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions)
 
+### 三、安装 redis
+
+    # 下载（在临时目录）
+    cd /tmp
+    wget http://download.redis.io/releases/redis-2.8.19.tar.gz
+    
+    # 解压
+    tar xzf redis-2.8.19.tar.gz
+    cd redis-2.8.19
+    
+    # 编译，编译后的文件存放在 src 目录下
+    make
+    
+    # 通过以下命令将编译后的可执行文件拷贝到 /usr/local/bin 中
+    make install
+    
+    # 将目录下 redis.conf 文件拷贝到 /etc 下
+    sudo cp redis.conf /etc/redis.conf
+    
+    # 配置 redis.conf
+    sudo vim /etc/redis.conf
+    # 修改以下内容
+    daemonize yes # 让redis-server作为守护进程运行
+    logfile /dev/null # 关闭日志功能
+    dir /var/lib/redis/ # 指定数据库存放目录
+    # 配置redis数据库目录
+    sudo mkdir -p /var/lib/redis
+    useradd redis
+    chown redis.redis /var/lib/redis
+    
+    # 启动redis服务
+    redis-server /etc/redis.conf
+    
+[redis 官方安装指引](http://redis.io/download)  |  [redis 配置整理](http://blog.phpfs.com/archives/1602.html)
     
 ### 程序运行环境
 
