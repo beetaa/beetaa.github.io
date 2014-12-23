@@ -7,19 +7,34 @@ category: blog
 
 ### 一、安装
 
+1、安装 hapijs
+
     npm install hapi --save
+    
+2、安装 hapijs 插件
+
+    npm install good
+    npm install good-console
+    
+``good`` 是一个访问日志插件，``good-console`` 是 ``good`` 插件的报告功能模块。官方网站有[完整的插件列表](http://hapijs.com/plugins)。
     
 ### 二、完整范例
 
+    // 引入 hapijs
+     
     var Hapi = require('hapi');
-    
+     
+    // 引入插件
+     
+    var Good = require('good');
+     
     // 创建服务器
-    
+     
     var server = new Hapi.Server();
     server.connection({ port: 3000 });
-    
+     
     // 配置API路由
-    
+     
     server.route({
         method: 'GET',
         path: '/',
@@ -27,7 +42,7 @@ category: blog
             reply('Hello, world!');
         }
     });
-    
+     
     server.route({
         method: 'GET',
         path: '/{name}',
@@ -35,70 +50,31 @@ category: blog
             reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
         }
     });
-    
+     
+    // 注册使用插件
+     
+    server.register({
+        register: Good,
+            options: {
+                reporters: [{
+                    reporter: require('good-console'),
+                    args:[{ log: '*', response: '*' }]
+                }]
+            }
+        }, function (err) {
+            if (err) {
+                throw err; // 如果插件加载过程中出现错误
+            }
+        }
+    );
+     
     // 启动服务器
-    
+     
     server.start(function () {
         console.log('API 服务器运行在:', server.info.uri);
     });
 
-### 三、使用插件
-
-1、首先要安装相关的插件，如：
-
-    npm install good --save
-    npm install good-console --save
-    
-``good`` 是一个访问日志插件，``good-console`` 是 ``good`` 插件的报告功能模块。
-
-2、通过 register 函数注册并使用插件
-
-    var Hapi = require('hapi');
-    
-    // 引入插件
-    
-    var Good = require('good');
-    
-    var server = new Hapi.Server();
-    server.connection({ port: 3000 });
-    
-    server.route({
-        method: 'GET',
-        path: '/',
-        handler: function (request, reply) {
-            reply('Hello, world!');
-        }
-    });
-    
-    server.route({
-        method: 'GET',
-        path: '/{name}',
-        handler: function (request, reply) {
-            reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
-        }
-    });
-    
-    // 注册使用插件
-    
-    server.register({
-        register: Good,
-        options: {
-            reporters: [{
-                reporter: require('good-console'),
-                args:[{ log: '*', response: '*' }]
-            }]
-        }
-    }, function (err) {
-        if (err) {
-            throw err; // 如果插件加载过程中出现错误
-        }
-    
-        server.start(function () {
-            server.log('info', 'API 服务器运行在: ' + server.info.uri);
-        });
-    });
-
-### 解决 Angular + Hapi 的跨域访问问题
+### 三、解决 Angular + Hapi 的跨域访问问题
 
 1、服务器端，在``reply``的``header``中加入相关头信息，明确指出服务器可接受跨域访问。
 
@@ -111,7 +87,22 @@ category: blog
         }
     );
     
-详细的文档说明见 [Hapi API 文档](http://hapijs.com/api#reply-interface) ，另外，这些头信息是否可以全局设定？
+或者使用``server.route()``选项的``config.cors``属性。
+
+    server.route({
+        handler: function(request, reply) {
+            reply('something');
+        },
+        config: {
+            cors: {origin: '*'}
+        }
+    });
+    
+``cors``属性值可以是``true``，也可以是一个包含``origin``、``matchOrigin``等属性的对象。详情见[官方文档关于cors的说明](http://hapijs.com/api#route-options) 。
+    
+另外，hapijs 还允许对 ``cors`` 进行全局设定，具体是在``new Hapi.server()``中指定``cors``配置：
+
+    var server = new Hapi.Server(host,port,{ cors: true });
 
 2、Angular 端，需要在 module.config 中设置 $http 服务。
 
