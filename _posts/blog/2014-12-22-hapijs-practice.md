@@ -42,7 +42,7 @@ category: blog
         console.log('API 服务器运行在:', server.info.uri);
     });
 
-### 使用插件
+### 三、使用插件
 
 1、首先要安装相关的插件，如：
 
@@ -98,4 +98,32 @@ category: blog
         });
     });
 
+### 解决 Angular + Hapi 的跨域访问问题
+
+1、服务器端，在``reply``的``header``中加入相关头信息，明确指出服务器可接受跨域访问。
+
+    server.route({
+        handler: function(request, reply) {
+            reply('something')
+                .header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+                .header('Access-Control-Allow-Origin', '*');
+            }
+        }
+    );
     
+详细的文档说明见 [Hapi API 文档](http://hapijs.com/api#reply-interface) ，另外，这些头信息是否可以全局设定？
+
+2、Angular 端，需要在 module.config 中设置 $http 服务。
+
+    app.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        // 如果服务器已经设置 Access-Control-Allow-Origin: "*",
+        // $httpProvider.defaults.withCredentials = true;
+        delete $httpProvider.defaults.headers.common["X-Requested-With"];
+        $httpProvider.defaults.headers.common["Accept"] = "application/json";
+        $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+    }]);
+    
+注意：Angular 中的 ``$httpProvider.defaults.withCredentials = true`` 与 服务器端的 ``Access-Control-Allow-Origin: "*"`` 不能同时设置，所以在这里要注释掉。
+
+关于 $http 服务还有两个需要注意的地方：一，以上设置可以在每一次请求前通过``$http(options)``进行覆盖；二、官方文档中提到``csrf``的问题有与Cookie相关的操作，不知是否对跨域访问有影响？参考文档：[Agularjs 官方 API 说明](https://docs.angularjs.org/api/ng/service/$http) 和 [Stackoverflow 相关问题的解答](http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api)。
