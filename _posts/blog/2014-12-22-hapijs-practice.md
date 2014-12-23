@@ -74,7 +74,13 @@ category: blog
         console.log('API 服务器运行在:', server.info.uri);
     });
 
-### 三、解决 Angular + Hapi 的跨域访问问题
+### 三、路由 - Routes
+
+**method**: 取值可以是任何有效的``http``请求方法，可通过字符串或数组来指定，如``'GET'``, ``'POST'``, ``['PUT', 'POST']``等。
+
+**path**: 1、可指定命名参数，如``'/hello/{user}'``，这个名为``user``的参数存储在``request.params``对象中，可通过``request.params.user``访问。2、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化。
+
+### 附录1：解决 Angular + Hapi 的跨域访问问题
 
 1、服务器端，在``reply``的``header``中加入相关头信息，明确指出服务器可接受跨域访问。
 
