@@ -76,9 +76,57 @@ category: blog
 
 ### 三、路由 - Routes
 
-**method**: 取值可以是任何有效的``http``请求方法，可通过字符串或数组来指定，如``'GET'``, ``'POST'``, ``['PUT', 'POST']``等。
+    server.route({
+        method: 'GET',
+        path: '/hello/{user}',
+        handler: function(request, reply) {},
+        config: {}
+    });
 
-**path**: 1、可指定命名参数，如``'/hello/{user}'``，这个名为``user``的参数存储在``request.params``对象中，可通过``request.params.user``访问。2、通过在地址栏中以``?key=value``形式指定的请求参数，可通过``request.query.key``访问。3、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化，但通过编码的中文和其他非标准字符将会是``%E8%B5%B5``的形式。
+1、**method** 取值可以是任何有效的 ``http`` 请求方法，可通过字符串或数组来指定，如 ``'GET'``, ``'POST'``, ``['PUT', 'POST']`` 等。
+
+2、**path** 可指定命名参数，如``'/hello/{user}'``。路径的每一个分段只能有一个命名参数。如：``/{filename}.jpg`` 是正确的，``/{filename}.{ext}`` 则是非法的。
+
+3、在指定命名参数的时候，可将该参数定义为可选的、非必要的，如 ``/hello/{user?}``，这时，通过 ``/hello/susan`` 和 ``/hello`` 的形式均可访问。但要注意的是：**只有最后一个参数可设为可选**，如 ``/{one?}/{two}`` 这样的模式是不被接受的。
+
+4、多分段参数。在命名参数后面加上一个 ``*`` 号，则代表这个参数是多分段参数。如 ``/hello/{user*}``，通过 ``/hello/zhao/yi/ya`` 的形式访问时，``request.params.user`` 的值将是字符串 ``'zhao/yi/ya'``，可通过字符串的 ``split('/')`` 方法转换为一个数组进行处理。注意，和可选参数一样：**只有最后一个参数可设为多分段参数**。
+
+3、命名参数存储在``request.params``对象中，可通过``request.params.user``访问。而通过在地址栏中以``?key=value``形式指定的请求参数，可通过``request.query.key``访问。
+
+4、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化，但通过编码的中文和其他非标准字符将会是``%E8%B5%B5``的形式。
+
+5、**handler** 函数的 request 包含来自用户端的详细请求信息，如路径参数、附带的正文数据(payload)、认证信息、请求头部信息等。handler 函数的 reply 用来反馈信息，反馈的内容可以是文本、buffer、Json对象、读写流。reply 方法返回一个 response 对象，我们可对其进行链式调用，如设置头信息、``content type``、重定向等。
+
+6、**config** 选项是可选的，可对每一个路由进行单独的设置，如：数据校验、身份验证、前置处理、附加数据处理、缓存选项等。
+
+### 通用方法 - Server Methods
+
+通用方法可让你在整个服务器范围内共享那些通用的功能。可通过以下两种方法注册通用方法。函数可以有任意数量的参数，但最后一个参数必须是 ``next()``，这是函数的回调，用于处理返回结果。回调函数的格式为 ``callback(err, result, ttl)``，如果在函数处理过程中发生错误，可通过 ``next(err)`` 的形式返回；如没有发生错误，可通过 ``next(null, result)`` 的形式返回。
+
+方法1，一次注册一个函数：
+
+    var add = function(x, y, next) {
+        next(null, x + y);
+    };
+     
+    server.method('add', add, {});
+    
+方法2，一次可以注册一个或多个函数：
+
+    var add = function(x, y, next) {
+        next(null, x + y);
+    };
+     
+    var multi = function(x, y, next) {
+        next(null, x * y);
+    };
+     
+    server.method([
+        {name: 'add', method: add, options: {}},
+        {name: 'multi', method: multi, options: {}}
+    ]);
+    
+通用方法的执行结果可以缓存，还有更多特性，详见 [官方文档]http://hapijs.com/tutorials/server-methods)。
 
 ### 附录1：解决 Angular + Hapi 的跨域访问问题
 
