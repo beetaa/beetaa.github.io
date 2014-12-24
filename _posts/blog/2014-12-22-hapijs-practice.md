@@ -78,7 +78,7 @@ category: blog
 
 **method**: 取值可以是任何有效的``http``请求方法，可通过字符串或数组来指定，如``'GET'``, ``'POST'``, ``['PUT', 'POST']``等。
 
-**path**: 1、可指定命名参数，如``'/hello/{user}'``，这个名为``user``的参数存储在``request.params``对象中，可通过``request.params.user``访问。2、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化。
+**path**: 1、可指定命名参数，如``'/hello/{user}'``，这个名为``user``的参数存储在``request.params``对象中，可通过``request.params.user``访问。2、通过在地址栏中以``?key=value``形式指定的请求参数，可通过``request.query.key``访问。3、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化，但通过编码的中文和其他非标准字符将会是``%E8%B5%B5``的形式。
 
 ### 附录1：解决 Angular + Hapi 的跨域访问问题
 
@@ -108,7 +108,13 @@ category: blog
     
 另外，hapijs 还允许对 ``cors`` 进行全局设定，具体是在``new Hapi.server()``中指定``cors``配置：
 
-    var server = new Hapi.Server(host,port,{ cors: true });
+    var server = new Hapi.Server({
+        host: '0.0.0.0',
+        port: 8080,
+        routes: {
+            cors: true
+        }
+    );
 
 2、Angular 端，需要在 module.config 中设置 $http 服务。
 
