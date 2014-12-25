@@ -134,7 +134,7 @@ category: blog
 
 ### 附录1：Hapijs 请求处理流程图
 
-![hapijs 请求处理流程](/images/hapijs/hapi_request_lifecycle.png)
+![hapijs 请求处理流程](/images/hapijs/request_lifecycle.png)
 
 ### 附录2：解决 Angular + Hapi 的跨域访问问题
 
