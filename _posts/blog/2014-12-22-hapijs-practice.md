@@ -99,7 +99,7 @@ category: blog
 
 6、**config** 选项是可选的，可对每一个路由进行单独的设置，如：数据校验、身份验证、前置处理、附加数据处理、缓存选项等。
 
-### 三、通用方法 - Server Methods
+### 四、通用方法 - Server Methods
 
 通用方法可让你在整个服务器范围内共享那些通用的功能。可通过以下两种方法注册通用方法。函数可以有任意数量的参数，但最后一个参数必须是 ``next()``，这是函数的回调，用于处理返回结果。回调函数的格式为 ``callback(err, result, ttl)``，如果在函数处理过程中发生错误，可通过 ``next(err)`` 的形式返回；如没有发生错误，可通过 ``next(null, result)`` 的形式返回。
 
@@ -128,7 +128,15 @@ category: blog
     
 通用方法的执行结果可以缓存，还有更多特性，详见 [官方文档](http://hapijs.com/tutorials/server-methods)。
 
-### 附录1：解决 Angular + Hapi 的跨域访问问题
+### 五、认证 - Authentication
+
+
+
+### 附录1：Hapijs 请求处理流程图
+
+![hapijs 请求处理流程](/images/hapijs/hapi_request_lifecycle.png)
+
+### 附录2：解决 Angular + Hapi 的跨域访问问题
 
 1、服务器端，在``reply``的``header``中加入相关头信息，明确指出服务器可接受跨域访问。
 
