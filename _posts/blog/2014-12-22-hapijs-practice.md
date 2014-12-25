@@ -135,6 +135,22 @@ category: blog
 ### 附录1：Hapijs 请求处理流程图
 
 ![hapijs 请求处理流程](/images/hapijs/request_lifecycle.png)
+图片来源：[RisingStack](http://blog.risingstack.com/getting-started-with-hapi-8/)
+
+从上图可以看出，hapijs 在处理请求和回应的过程中，有多个地方会 emmit 出相关的事件，可以通过 ``server.ext()`` 方法侦听这些事件信息，并对流程进行控制。以下的例子是通过侦听 ``onRequest`` 事件，将所有请求跳转至指定的 url。
+
+    // 参考: https://github.com/hapijs/hapi/blob/master/API.md
+    var Hapi = require('hapi');
+    var server = new Hapi.Server();
+        server.connection({
+        port: 3000
+    });
+     
+    server.ext('onRequest', function (request, reply) {
+        // 将所有请求跳转至 '/test'
+        request.setUrl('/test');
+        return reply.continue();
+    }); 
 
 ### 附录2：解决 Angular + Hapi 的跨域访问问题
 
