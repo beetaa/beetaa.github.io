@@ -28,9 +28,18 @@ category: blog
      
     var Good = require('good');
      
-    // 创建服务器
+    // 初始化服务器配置
      
-    var server = new Hapi.Server();
+    var config = {
+        dbConnection: 'mongodb://db1.example.net,db2.example.net:2500/?replicaSet=test'
+    };
+     
+    var server = new Hapi.Server({
+        app: config
+    });
+     
+    // 每一个端口可以建立一个服务器
+     
     server.connection({ port: 3000 });
      
     // 配置API路由
@@ -65,14 +74,19 @@ category: blog
             if (err) {
                 throw err; // 如果插件加载过程中出现错误
             }
+            // 启动服务器
+     
+            server.start(function () {
+                console.log('API 服务器运行在:', server.info.uri);
+            });
         }
     );
      
-    // 启动服务器
-     
-    server.start(function () {
-        console.log('API 服务器运行在:', server.info.uri);
-    });
+    
+
+**hapijs 可以在同一个程序中建立一个或多个服务器**。每一个 ``server.connection()`` 都会新建一个服务器。如，我们可以通过 ``server.connection({port: 3000})`` 建立一个 API 服务器，通过 ``server.connection({port: 80})`` 建立一个 WEB 服务。
+
+如以上范例所示，通过 ``config`` 初始化，可以将这些**配置信息在后续建立的多个服务器中共享**。这个例子中的 ``dbConnection`` 变量可以在任何地方访问到。
 
 ### 三、路由 - Routes
 
@@ -128,7 +142,52 @@ category: blog
     
 通用方法的执行结果可以缓存，还有更多特性，详见 [官方文档](http://hapijs.com/tutorials/server-methods)。
 
-### 五、认证 - Authentication
+### 五、插件 - Plugins
+
+插件系统是 hapijs 的重要特性。可以将逻辑处理细分为多个插件，然后在服务器加载。理想情况下，所有的逻辑处理模块如用户管理、文章管理等，均可细分为插件进行管理，服务器文件只负责配置信息。
+
+1、插件的创建非常简单。每个插件只需一个包含 ``register(server, options, next)`` 函数的对象即可。``server`` 参数其实就是传入插件的服务器实例，因此我们可以在插件中直接定义路由、使用服务器通用方法等。``options`` 参数是一个 json 对象，可以通过这里向插件传递参数。
+
+    var myPlugin = {
+        register: function (server, options, next) {
+            server.route({
+                method: 'GET',
+                path: '/',
+                handler: function (request, reply) {
+                    reply('Hello world!');
+                }
+            });
+            next();
+        }
+    }
+     
+    myPlugin.register.attributes = {
+        name: 'myPlugin',
+        version: '1.0.0'
+    };
+     
+    module.exports = myPlugin; 
+    
+2、加载插件也是非常简单。在服务器配置文件中可以通过 ``server.register()`` 方法加载插件并启动服务器。如果要加载多个插件，可通过数组的形式进行加载。
+
+    var Hapi = require('hapi');
+     
+    var server = new Hapi.Server();
+     
+    server.connection({ 
+      port: 3000
+    });
+     
+    server.register({
+        register: require('myplugin'),
+        options: {message: 'hello'}
+        }, 
+        function (err) {
+            if (err) throw(err);
+            server.start();
+    });
+
+### 六、认证 - Authentication
 
 
 
@@ -202,3 +261,7 @@ category: blog
 注意：Angular 中的 ``$httpProvider.defaults.withCredentials = true`` 与 服务器端的 ``Access-Control-Allow-Origin: "*"`` 不能同时设置，所以在这里要注释掉。
 
 关于 $http 服务还有两个需要注意的地方：一，以上设置可以在每一次请求前通过``$http(options)``进行覆盖；二、官方文档中提到``csrf``的问题有与Cookie相关的操作，不知是否对跨域访问有影响？参考文档：[Agularjs 官方 API 说明](https://docs.angularjs.org/api/ng/service/$http) 和 [Stackoverflow 相关问题的解答](http://stackoverflow.com/questions/17289195/angularjs-post-data-to-external-rest-api)。
+
+### 附录3：hapijs 好文收录
+
+- [Manifests, plugins and schemas: Organizing your hapi application](https://medium.com/nerds-zappos/manifests-plugins-and-schemas-organizing-your-hapi-application-68cf316730ef)
