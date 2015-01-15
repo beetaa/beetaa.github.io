@@ -105,13 +105,13 @@ category: blog
 
 4、多分段参数。在命名参数后面加上一个 ``*`` 号，则代表这个参数是多分段参数。如 ``/hello/{user*}``，通过 ``/hello/zhao/yi/ya`` 的形式访问时，``request.params.user`` 的值将是字符串 ``'zhao/yi/ya'``，可通过字符串的 ``split('/')`` 方法转换为一个数组进行处理。注意，和可选参数一样：**只有最后一个参数可设为多分段参数**。
 
-3、命名参数存储在``request.params``对象中，可通过``request.params.user``访问。而通过在地址栏中以``?key=value``形式指定的请求参数，可通过``request.query.key``访问。
+5、命名参数存储在``request.params``对象中，可通过``request.params.user``访问。而通过在地址栏中以``?key=value``形式指定的请求参数，可通过``request.query.key``访问。通过 **POST** 发送的数据，可通过 ``request.payload.key`` 访问。
 
-4、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化，但通过编码的中文和其他非标准字符将会是``%E8%B5%B5``的形式。
+6、为防止内容注入攻击，可通过``encodeURIComponent(request.params.user)``对内容编码净化，但通过编码的中文和其他非标准字符将会是``%E8%B5%B5``的形式。
 
-5、**handler** 函数的 request 包含来自用户端的详细请求信息，如路径参数、附带的正文数据(payload)、认证信息、请求头部信息等。handler 函数的 reply 用来反馈信息，反馈的内容可以是文本、buffer、Json对象、读写流。reply 方法返回一个 response 对象，我们可对其进行链式调用，如设置头信息、``content type``、重定向等。
+7、**handler** 函数的 request 包含来自用户端的详细请求信息，如路径参数、附带的正文数据(payload)、认证信息、请求头部信息等。handler 函数的 reply 用来反馈信息，反馈的内容可以是文本、buffer、Json对象、读写流。reply 方法返回一个 response 对象，我们可对其进行链式调用，如设置头信息、``content type``、重定向等。
 
-6、**config** 选项是可选的，可对每一个路由进行单独的设置，如：数据校验、身份验证、前置处理、附加数据处理、缓存选项等。
+8、**config** 选项是可选的，可对每一个路由进行单独的设置，如：数据校验、身份验证、前置处理、附加数据处理、缓存选项等。
 
 ### 四、通用方法 - Server Methods
 
