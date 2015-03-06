@@ -183,14 +183,19 @@ category: blog
     > groupadd ftp-users
     > mkdir /var/ftp
     > chmod 775 /var/ftp    # 此处权限要够，否则登不进去
-    > chown root:ftp-users /var/ftp     # 设置文件夹归属
     > useradd -g ftp-users -d /var/ftp user1    # 添加用户并设置用户目录
     > passwd user1  # 设置用户密码
+    > chown user1:ftp-users /var/ftp     # 设置文件夹归属
     
     # 重启
     > sudo /etc/init.d/vsftpd restart
     # 或
     > sudo service vsftpd restart
+    
+    # 处理 530 登陆错误
+    > sudo vim /etc/pam.d/vsftpd
+    
+    注释掉包含 auth 的两行
     
 ### pptpd vpn 服务器安装和配置
 
